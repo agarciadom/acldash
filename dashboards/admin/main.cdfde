@@ -4,219 +4,422 @@
    {
     "id": "OTHERCOMPONENTS",
     "name": "Others",
-    "type": "Label",
-    "typeDesc": "<i>Group</i>",
     "parent": "UnIqEiD",
     "properties": [
      {
       "name": "Group",
-      "value": "Others",
-      "type": "Label"
+      "type": "Label",
+      "value": "Others"
      }
-    ]
+    ],
+    "type": "Label",
+    "typeDesc": "<i>Group</i>"
    },
    {
     "id": "d4410107-9567-5c8a-a866-594981b27f0c",
-    "type": "ComponentsTable",
-    "typeDesc": "table Component",
     "parent": "OTHERCOMPONENTS",
     "properties": [
      {
       "name": "name",
-      "value": "tblRoles",
-      "type": "Id"
+      "type": "Id",
+      "value": "tblRoles"
      },
      {
       "name": "expandContainerObject",
-      "value": "",
-      "type": "String"
+      "type": "String",
+      "value": ""
      },
      {
       "name": "listeners",
-      "value": "[]",
-      "type": "Listeners"
+      "type": "Listeners",
+      "value": "[]"
      },
      {
       "name": "oLanguage",
-      "value": "",
-      "type": "JavaScript"
+      "type": "JavaScript",
+      "value": ""
      },
      {
       "name": "language",
-      "value": "",
-      "type": "JavaScript"
+      "type": "JavaScript",
+      "value": ""
      },
      {
       "name": "colFormats",
-      "value": "[]",
-      "type": "ColFormatsArray"
+      "type": "ColFormatsArray",
+      "value": "[]"
      },
      {
       "name": "colHeaders",
-      "value": "[]",
-      "type": "ColHeadersArray"
+      "type": "ColHeadersArray",
+      "value": "[\"Role\"]"
      },
      {
       "name": "colSortable",
-      "value": "[]",
-      "type": "ColSortableArray"
+      "type": "ColSortableArray",
+      "value": "[]"
      },
      {
       "name": "colTypes",
-      "value": "[]",
-      "type": "colTypesCustom"
+      "type": "colTypesCustom",
+      "value": "[]"
      },
      {
       "name": "colWidths",
-      "value": "[]",
-      "type": "ColWidthsArray"
+      "type": "ColWidthsArray",
+      "value": "[]"
      },
      {
       "name": "expandParameters",
-      "value": "[]",
-      "type": "ValuesArray"
+      "type": "ValuesArray",
+      "value": "[]"
      },
      {
       "name": "parameters",
-      "value": "[]",
-      "type": "ValuesArray"
+      "type": "ValuesArray",
+      "value": "[]"
      },
      {
       "name": "displayLength",
-      "value": "",
-      "type": "Integer"
+      "type": "Integer",
+      "value": ""
      },
      {
       "name": "expandOnClick",
-      "value": "false",
-      "type": "Boolean"
+      "type": "Boolean",
+      "value": "false"
      },
      {
       "name": "filter",
-      "value": "true",
-      "type": "Boolean"
+      "type": "Boolean",
+      "value": "true"
      },
      {
       "name": "info",
-      "value": "true",
-      "type": "Boolean"
+      "type": "Boolean",
+      "value": "true"
      },
      {
       "name": "lengthChange",
-      "value": "true",
-      "type": "Boolean"
+      "type": "Boolean",
+      "value": "true"
      },
      {
       "name": "paginate",
-      "value": "true",
-      "type": "Boolean"
+      "type": "Boolean",
+      "value": "true"
      },
      {
       "name": "sort",
-      "value": "true",
-      "type": "Boolean"
+      "type": "Boolean",
+      "value": "true"
      },
      {
       "name": "colSearchable",
-      "value": "[]",
-      "type": "Array"
+      "type": "Array",
+      "value": "[]"
      },
      {
       "name": "drawCallback",
-      "value": "",
-      "type": "JavaScript"
+      "type": "JavaScript",
+      "value": ""
      },
      {
       "name": "dataSource",
-      "value": "dsRoles",
-      "type": "Datasource"
+      "type": "Datasource",
+      "value": "dsRoles"
      },
      {
       "name": "sDom",
-      "value": "",
-      "type": "JavaScript"
+      "type": "JavaScript",
+      "value": ""
      },
      {
       "name": "sortBy",
-      "value": "[]",
-      "type": "SortByArray"
+      "type": "SortByArray",
+      "value": "[]"
      },
      {
       "name": "priority",
-      "value": 5,
-      "type": "Integer"
+      "type": "Integer",
+      "value": 5
      },
      {
       "name": "refreshPeriod",
-      "value": "",
-      "type": "Integer"
+      "type": "Integer",
+      "value": ""
      },
      {
       "name": "paginationType",
-      "value": "simple_numbers",
-      "type": "PaginationType"
+      "type": "PaginationType",
+      "value": "simple_numbers"
      },
      {
       "name": "tableStyle",
-      "value": "",
-      "type": "TableStyle"
+      "type": "TableStyle",
+      "value": ""
      },
      {
       "name": "htmlObject",
-      "value": "${h:Panel_1}",
-      "type": "HtmlObject"
+      "type": "HtmlObject",
+      "value": "${h:Panel_1}"
      },
      {
       "name": "executeAtStart",
-      "value": "true",
-      "type": "Boolean"
+      "type": "Boolean",
+      "value": "true"
      },
      {
       "name": "paginateServerside",
-      "value": "false",
-      "type": "Boolean"
+      "type": "Boolean",
+      "value": "false"
      },
      {
       "name": "preExecution",
-      "value": "",
-      "type": "JavaScript"
+      "type": "JavaScript",
+      "value": ""
      },
      {
       "name": "postExecution",
-      "value": "",
-      "type": "JavaScript"
+      "type": "JavaScript",
+      "value": ""
      },
      {
       "name": "postFetch",
-      "value": "",
-      "type": "JavaScript"
+      "type": "JavaScript",
+      "value": ""
      },
      {
       "name": "preChange",
-      "value": "",
-      "type": "JavaScript"
+      "type": "JavaScript",
+      "value": ""
      },
      {
       "name": "postChange",
-      "value": "",
-      "type": "JavaScript"
+      "type": "JavaScript",
+      "value": ""
      },
      {
       "name": "extraOptions",
-      "value": "[]",
-      "type": "OptionArray"
+      "type": "OptionArray",
+      "value": "[]"
      },
      {
       "name": "tooltip",
-      "value": "",
-      "type": "Html"
+      "type": "Html",
+      "value": ""
      },
      {
       "name": "clickAction",
-      "value": "",
-      "type": "JavaScript"
+      "type": "JavaScript",
+      "value": ""
      }
-    ]
+    ],
+    "type": "ComponentsTable",
+    "typeDesc": "table Component"
+   },
+   {
+    "id": "6ec57b55-5aff-f580-9608-eafa7cb28121",
+    "parent": "OTHERCOMPONENTS",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "tblUsers"
+     },
+     {
+      "name": "expandContainerObject",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "listeners",
+      "type": "Listeners",
+      "value": "[]"
+     },
+     {
+      "name": "oLanguage",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "language",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "colFormats",
+      "type": "ColFormatsArray",
+      "value": "[]"
+     },
+     {
+      "name": "colHeaders",
+      "type": "ColHeadersArray",
+      "value": "[\"User\"]"
+     },
+     {
+      "name": "colSortable",
+      "type": "ColSortableArray",
+      "value": "[]"
+     },
+     {
+      "name": "colTypes",
+      "type": "colTypesCustom",
+      "value": "[]"
+     },
+     {
+      "name": "colWidths",
+      "type": "ColWidthsArray",
+      "value": "[]"
+     },
+     {
+      "name": "expandParameters",
+      "type": "ValuesArray",
+      "value": "[]"
+     },
+     {
+      "name": "parameters",
+      "type": "ValuesArray",
+      "value": "[]"
+     },
+     {
+      "name": "displayLength",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "expandOnClick",
+      "type": "Boolean",
+      "value": "false"
+     },
+     {
+      "name": "filter",
+      "type": "Boolean",
+      "value": "true"
+     },
+     {
+      "name": "info",
+      "type": "Boolean",
+      "value": "true"
+     },
+     {
+      "name": "lengthChange",
+      "type": "Boolean",
+      "value": "true"
+     },
+     {
+      "name": "paginate",
+      "type": "Boolean",
+      "value": "true"
+     },
+     {
+      "name": "sort",
+      "type": "Boolean",
+      "value": "true"
+     },
+     {
+      "name": "colSearchable",
+      "type": "Array",
+      "value": "[]"
+     },
+     {
+      "name": "drawCallback",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "dataSource",
+      "type": "Datasource",
+      "value": "dsUsers"
+     },
+     {
+      "name": "sDom",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "sortBy",
+      "type": "SortByArray",
+      "value": "[]"
+     },
+     {
+      "name": "priority",
+      "type": "Integer",
+      "value": 5
+     },
+     {
+      "name": "refreshPeriod",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "paginationType",
+      "type": "PaginationType",
+      "value": "simple_numbers"
+     },
+     {
+      "name": "tableStyle",
+      "type": "TableStyle",
+      "value": ""
+     },
+     {
+      "name": "htmlObject",
+      "type": "HtmlObject",
+      "value": "${h:Panel_2}"
+     },
+     {
+      "name": "executeAtStart",
+      "type": "Boolean",
+      "value": "true"
+     },
+     {
+      "name": "paginateServerside",
+      "type": "Boolean",
+      "value": "false"
+     },
+     {
+      "name": "preExecution",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "postExecution",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "postFetch",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "preChange",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "postChange",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "extraOptions",
+      "type": "OptionArray",
+      "value": "[]"
+     },
+     {
+      "name": "tooltip",
+      "type": "Html",
+      "value": ""
+     },
+     {
+      "name": "clickAction",
+      "type": "JavaScript",
+      "value": ""
+     }
+    ],
+    "type": "ComponentsTable",
+    "typeDesc": "table Component"
    }
   ]
  },
@@ -225,26 +428,52 @@
    {
     "id": "ACLDASH_CPKENDPOINTS",
     "name": "ACLDASH Endpoints",
-    "type": "Label",
-    "typeDesc": "<i>Group</i>",
     "parent": "UnIqEiD",
     "properties": [
      {
       "name": "Group",
-      "value": "ACLDASH Endpoints",
-      "type": "Label"
+      "type": "Label",
+      "value": "ACLDASH Endpoints"
      }
-    ]
+    ],
+    "type": "Label",
+    "typeDesc": "<i>Group</i>"
    },
    {
     "id": "f7a0558e-db24-1901-40b8-25f1455cfff8",
-    "type": "Componentsacldash_listRoles_CPKENDPOINT",
-    "typeDesc": "listRoles Endpoint",
+    "meta": "CPK",
+    "meta_endpoint": "listRoles",
+    "meta_pluginId": "acldash",
     "parent": "ACLDASH_CPKENDPOINTS",
     "properties": [
      {
       "name": "name",
-      "value": "dsRoles",
+      "type": "Id",
+      "value": "dsRoles"
+     },
+     {
+      "name": "stepName",
+      "type": "String",
+      "value": "OUTPUT"
+     },
+     {
+      "name": "kettleOutput",
+      "type": "kettleOutputCustom",
+      "value": "Inferred"
+     }
+    ],
+    "type": "Componentsacldash_listRoles_CPKENDPOINT",
+    "typeDesc": "listRoles Endpoint"
+   },
+   {
+    "id": "779fe1bf-5afa-b187-4b09-e4b5d86a3877",
+    "type": "Componentsacldash_listusers_CPKENDPOINT",
+    "typeDesc": "listusers Endpoint",
+    "parent": "ACLDASH_CPKENDPOINTS",
+    "properties": [
+     {
+      "name": "name",
+      "value": "dsUsers",
       "type": "Id"
      },
      {
@@ -260,7 +489,7 @@
     ],
     "meta": "CPK",
     "meta_pluginId": "acldash",
-    "meta_endpoint": "listRoles"
+    "meta_endpoint": "listusers"
    }
   ]
  },
@@ -390,7 +619,7 @@
      {
       "name": "html",
       "type": "Html",
-      "value": "<h2 style=\"color:#FFFFFF;\">Dashboard generated with CDE</h2>\n "
+      "value": "<h2 style=\"color:#FFFFFF;\">ACL Dashboards</h2>\n "
      },
      {
       "name": "fontSize",
@@ -781,39 +1010,6 @@
     ],
     "type": "LayoutColumn",
     "typeDesc": "Column"
-   },
-   {
-    "id": "68d6b48f-a44c-99af-7261-38b98e99259e",
-    "parent": "e5c22f13-2f56-9638-5a05-b675a84fc695",
-    "properties": [
-     {
-      "name": "name",
-      "type": "Id",
-      "value": "Image"
-     },
-     {
-      "name": "html",
-      "type": "Html",
-      "value": "<a style=\"position:relative;top:9px;right:15px;float:right;\" border=\"0\" title=\"WebDetails\" href=\"http://www.webdetails.pt\">\n<img src=\"images/NAV/logo_webdetails.png\"/>\n</a> "
-     },
-     {
-      "name": "fontSize",
-      "type": "Integer",
-      "value": ""
-     },
-     {
-      "name": "color",
-      "type": "Color",
-      "value": ""
-     },
-     {
-      "name": "cssClass",
-      "type": "String",
-      "value": ""
-     }
-    ],
-    "type": "LayoutHtml",
-    "typeDesc": "Html"
    }
   ],
   "title": "2 Columns Template"

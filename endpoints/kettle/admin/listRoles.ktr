@@ -70,17 +70,18 @@
   <created_date>2014&#x2f;04&#x2f;11 21&#x3a;51&#x3a;03.311</created_date>
   <modified_user>-</modified_user>
   <modified_date>2014&#x2f;04&#x2f;11 21&#x3a;51&#x3a;03.311</modified_date>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
+    <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
   <order>
-  <hop> <from>Read config</from><to>Escape URI</to><enabled>Y</enabled> </hop>
-  <hop> <from>Escape URI</from><to>Get &#x2f;roles</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get &#x2f;roles</from><to>Get data from XML</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get data from XML</from><to>roles -&#x3e; role</to><enabled>Y</enabled> </hop>
   <hop> <from>roles -&#x3e; role</from><to>Ordenar</to><enabled>Y</enabled> </hop>
   <hop> <from>Ordenar</from><to>OUTPUT</to><enabled>Y</enabled> </hop>
   <hop> <from>Administrator</from><to>Ordenar</to><enabled>Y</enabled> </hop>
+  <hop> <from>Data Grid</from><to>Get roles</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get roles</from><to>Get data from XML</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get data from XML</from><to>roles -&#x3e; role</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>Administrator</name>
@@ -111,15 +112,15 @@
     </data>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>809</xloc>
-      <yloc>162</yloc>
+      <xloc>705</xloc>
+      <yloc>146</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Escape URI</name>
-    <type>Janino</type>
+    <name>Get roles</name>
+    <type>CallEndpointStep</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -128,24 +129,50 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-       <formula><field_name>escaped_uri</field_name>
-<formula_string>new java.net.URI&#x28;scheme, null, host, port.intValue&#x28;&#x29;, baseURI &#x2b; &#x22;&#x2f;userrolelist&#x2f;roles&#x22;, null, null&#x29;.toASCIIString&#x28;&#x29;</formula_string>
-<value_type>String</value_type>
-<value_length>-1</value_length>
-<value_precision>-1</value_precision>
-<replace_field/>
-</formula>
+    <serverUrl>http&#x3a;&#x2f;&#x2f;localhost&#x3a;8080&#x2f;pentaho</serverUrl>
+    <userName>admin</userName>
+    <password>password</password>
+    <isBypassingAuthentication>Y</isBypassingAuthentication>
+    <moduleName>platform</moduleName>
+    <isModuleFromField>N</isModuleFromField>
+    <endpointPath>&#x2f;userrolelist&#x2f;allRoles</endpointPath>
+    <httpMethod>GET</httpMethod>
+    <isEndpointFromField>N</isEndpointFromField>
+    <resultField>result</resultField>
+    <statusCodeField/>
+    <responseTimeField/>
+    <fields>
+    </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>336</xloc>
-      <yloc>261</yloc>
+      <xloc>312</xloc>
+      <yloc>226</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Get &#x2f;roles</name>
-    <type>Rest</type>
+    <name>OUTPUT</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>836</xloc>
+      <yloc>226</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Ordenar</name>
+    <type>SortRows</type>
     <description/>
     <distribute>N</distribute>
     <custom_distribution/>
@@ -154,34 +181,84 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <applicationType>XML</applicationType>
-    <method>GET</method>
-    <url/>
-    <urlInField>Y</urlInField>
-    <dynamicMethod>N</dynamicMethod>
-    <methodFieldName/>
-    <urlField>escaped_uri</urlField>
-    <bodyField/>
-    <httpLogin>&#x24;&#x7b;ARTIFACTCATALOG_RESTAPI_USER&#x7d;</httpLogin>
-    <httpPassword>&#x24;&#x7b;ARTIFACTCATALOG_RESTAPI_PWD&#x7d;</httpPassword>
-    <proxyHost/>
-    <proxyPort/>
-    <preemptive>N</preemptive>
-    <trustStoreFile/>
-    <trustStorePassword>Encrypted </trustStorePassword>
-    <headers>
-      </headers>
-    <parameters>
-      </parameters>
-    <result>
-      <name>result</name>
-      <code/>
-      <response_time/>
-      </result>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
+      <prefix>out</prefix>
+      <sort_size>1000000</sort_size>
+      <free_memory/>
+      <compress>N</compress>
+      <compress_variable/>
+      <unique_rows>Y</unique_rows>
+    <fields>
+      <field>
+        <name>role</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <presorted>N</presorted>
+      </field>
+    </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>492</xloc>
-      <yloc>264</yloc>
+      <xloc>705</xloc>
+      <yloc>226</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>roles -&#x3e; role</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>roles</name>
+        <rename>role</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>574</xloc>
+      <yloc>226</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Data Grid</name>
+    <type>DataGrid</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>dummy</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <data>
+      <line> <item>1</item> </line>
+    </data>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>181</xloc>
+      <yloc>226</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -250,125 +327,8 @@
     <sizeFieldName/>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>648</xloc>
-      <yloc>261</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>OUTPUT</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1116</xloc>
-      <yloc>261</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Ordenar</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
-      <prefix>out</prefix>
-      <sort_size>1000000</sort_size>
-      <free_memory/>
-      <compress>N</compress>
-      <compress_variable/>
-      <unique_rows>Y</unique_rows>
-    <fields>
-      <field>
-        <name>role</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>960</xloc>
-      <yloc>261</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Read config</name>
-    <type>Mapping</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <specification_method>filename</specification_method>
-    <trans_object_id/>
-    <trans_name/>
-    <filename>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;..&#x2f;_read-config.ktr</filename>
-    <directory_path/>
-    <mappings>
-      <input>
-      </input>
-      <output>
-    <mapping>    <input_step/>
-    <output_step/>
-    <main_path>Y</main_path>
-    <rename_on_output>N</rename_on_output>
-    <description/>
-    </mapping>      </output>
-          <parameters>       <variablemapping><variable>Internal.Transformation.Filename.Directory</variable><input>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;..</input></variablemapping>
-    <inherit_all_vars>Y</inherit_all_vars>
-    </parameters>
-    </mappings>
-    <allow_multiple_input>N</allow_multiple_input>
-    <allow_multiple_output>N</allow_multiple_output>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>180</xloc>
-      <yloc>261</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>roles -&#x3e; role</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>      <field>        <name>roles</name>
-        <rename>role</rename>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>804</xloc>
-      <yloc>261</yloc>
+      <xloc>443</xloc>
+      <yloc>226</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

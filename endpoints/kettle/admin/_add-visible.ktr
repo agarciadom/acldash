@@ -80,20 +80,17 @@
   <created_date>2014&#x2f;04&#x2f;04 20&#x3a;43&#x3a;26.139</created_date>
   <modified_user>-</modified_user>
   <modified_date>2014&#x2f;04&#x2f;04 20&#x3a;43&#x3a;26.139</modified_date>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
+    <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
   <order>
   <hop> <from>Split field to rows</from><to>Remove currentRoles</to><enabled>Y</enabled> </hop>
-  <hop> <from>Remove currentRoles</from><to>Join Rows</to><enabled>Y</enabled> </hop>
   <hop> <from>User matches&#x3f;</from><to>Role matches&#x3f;</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get Credentials</from><to>Split field to rows</to><enabled>Y</enabled> </hop>
-  <hop> <from>Join Rows</from><to>Normalize case</to><enabled>Y</enabled> </hop>
   <hop> <from>Normalize case</from><to>Log all ACL entries</to><enabled>N</enabled> </hop>
   <hop> <from>Current role is admin&#x3f;</from><to>User matches&#x3f;</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get ACL</from><to>Join Rows</to><enabled>Y</enabled> </hop>
   <hop> <from>Normalize case</from><to>Current role is admin&#x3f;</to><enabled>Y</enabled> </hop>
-  <hop> <from>INPUT</from><to>Get ACL</to><enabled>Y</enabled> </hop>
   <hop> <from>Current role is admin&#x3f;</from><to>reason &#x3d; admin role</to><enabled>Y</enabled> </hop>
   <hop> <from>reason &#x3d; admin role</from><to>Add visible &#x3d; true</to><enabled>Y</enabled> </hop>
   <hop> <from>User matches&#x3f;</from><to>reason &#x3d; user</to><enabled>Y</enabled> </hop>
@@ -102,13 +99,16 @@
   <hop> <from>reason &#x3d; role</from><to>Add visible &#x3d; true</to><enabled>Y</enabled> </hop>
   <hop> <from>Role matches&#x3f;</from><to>Add visible &#x3d; false</to><enabled>Y</enabled> </hop>
   <hop> <from>Add visible &#x3d; false</from><to>Remove technical fields</to><enabled>Y</enabled> </hop>
-  <hop> <from>Remove technical fields</from><to>Sort by ID and remove dups</to><enabled>Y</enabled> </hop>
+  <hop> <from>Remove technical fields</from><to>Sort and remove dups</to><enabled>Y</enabled> </hop>
   <hop> <from>Add visible &#x3d; true</from><to>Remove technical fields</to><enabled>Y</enabled> </hop>
   <hop> <from>Add visible &#x3d; false</from><to>Write visible&#x3d;false</to><enabled>N</enabled> </hop>
   <hop> <from>Add visible &#x3d; true</from><to>Write visible&#x3d;true</to><enabled>N</enabled> </hop>
-  <hop> <from>Sort by ID and remove dups</from><to>Choose isVisible&#x3d;true over false</to><enabled>Y</enabled> </hop>
+  <hop> <from>Sort and remove dups</from><to>Choose isVisible&#x3d;true over false</to><enabled>Y</enabled> </hop>
   <hop> <from>Choose isVisible&#x3d;true over false</from><to>OUTPUT</to><enabled>Y</enabled> </hop>
   <hop> <from>Choose isVisible&#x3d;true over false</from><to>Write visible and not visible</to><enabled>N</enabled> </hop>
+  <hop> <from>INPUT</from><to>Get ACL</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get ACL</from><to>Split field to rows</to><enabled>Y</enabled> </hop>
+  <hop> <from>Remove currentRoles</from><to>Normalize case</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>Add visible &#x3d; false</name>
@@ -149,8 +149,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>556</xloc>
-      <yloc>698</yloc>
+      <xloc>463</xloc>
+      <yloc>730</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -182,8 +182,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>870</xloc>
-      <yloc>581</yloc>
+      <xloc>824</xloc>
+      <yloc>630</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -207,8 +207,8 @@
         <case_insensitive>N</case_insensitive>
         </field>      </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>875</xloc>
-      <yloc>901</yloc>
+      <xloc>824</xloc>
+      <yloc>921</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -236,8 +236,8 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>553</xloc>
-      <yloc>437</yloc>
+      <xloc>463</xloc>
+      <yloc>430</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -282,53 +282,8 @@
     <allow_multiple_output>N</allow_multiple_output>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>339</xloc>
+      <xloc>312</xloc>
       <yloc>130</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Get Credentials</name>
-    <type>GetVariable</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <name>currentUser</name>
-        <variable>&#x24;&#x7b;currentUser&#x7d;</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>currentRoles</name>
-        <variable>&#x24;&#x7b;currentRoles&#x7d;</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>97</xloc>
-      <yloc>248</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -357,43 +312,24 @@
         <length>-1</length>
         <precision>-1</precision>
       </field>
+      <field>
+        <name>currentUser</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>currentRoles</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
         <select_unspecified>N</select_unspecified>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>161</xloc>
       <yloc>130</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Join Rows</name>
-    <type>JoinRows</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
-      <prefix>out</prefix>
-      <cache_size>500</cache_size>
-      <main/>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue/>
- <function>&#x3d;</function>
- <rightvalue/>
- </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>553</xloc>
-      <yloc>248</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -418,8 +354,8 @@
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>734</xloc>
-      <yloc>342</yloc>
+      <xloc>645</xloc>
+      <yloc>330</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -478,8 +414,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>553</xloc>
-      <yloc>342</yloc>
+      <xloc>463</xloc>
+      <yloc>330</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -497,8 +433,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>872</xloc>
-      <yloc>992</yloc>
+      <xloc>824</xloc>
+      <yloc>1011</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -518,8 +454,8 @@
       <remove>        <name>currentRoles</name>
       </remove>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>401</xloc>
-      <yloc>248</yloc>
+      <xloc>463</xloc>
+      <yloc>230</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -542,8 +478,8 @@
       </remove>      <remove>        <name>currentRole</name>
       </remove>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>873</xloc>
-      <yloc>696</yloc>
+      <xloc>824</xloc>
+      <yloc>730</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -583,14 +519,14 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>553</xloc>
-      <yloc>625</yloc>
+      <xloc>463</xloc>
+      <yloc>630</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Sort by ID and remove dups</name>
+    <name>Sort and remove dups</name>
     <type>SortRows</type>
     <description/>
     <distribute>N</distribute>
@@ -623,8 +559,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>874</xloc>
-      <yloc>814</yloc>
+      <xloc>824</xloc>
+      <yloc>831</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -649,8 +585,8 @@
    <delimiter_is_regex>N</delimiter_is_regex>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>249</xloc>
-      <yloc>248</yloc>
+      <xloc>463</xloc>
+      <yloc>130</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -690,8 +626,8 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>553</xloc>
-      <yloc>531</yloc>
+      <xloc>463</xloc>
+      <yloc>530</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -716,8 +652,8 @@
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1055</xloc>
-      <yloc>891</yloc>
+      <xloc>1076</xloc>
+      <yloc>921</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -742,8 +678,8 @@
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>562</xloc>
-      <yloc>836</yloc>
+      <xloc>463</xloc>
+      <yloc>830</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -768,8 +704,8 @@
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1010</xloc>
-      <yloc>582</yloc>
+      <xloc>1082</xloc>
+      <yloc>630</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -798,8 +734,8 @@
         <replace>N</replace>
       </field>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>684</xloc>
-      <yloc>455</yloc>
+      <xloc>645</xloc>
+      <yloc>430</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -828,8 +764,8 @@
         <replace>N</replace>
       </field>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>675</xloc>
-      <yloc>575</yloc>
+      <xloc>645</xloc>
+      <yloc>630</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -858,8 +794,8 @@
         <replace>N</replace>
       </field>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>674</xloc>
-      <yloc>515</yloc>
+      <xloc>645</xloc>
+      <yloc>530</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

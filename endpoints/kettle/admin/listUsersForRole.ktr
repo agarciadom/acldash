@@ -11,7 +11,7 @@
     <parameters>
         <parameter>
             <name>targetRole</name>
-            <default_value/>
+            <default_value>Administrator</default_value>
             <description>Role whose users should be listed.</description>
         </parameter>
     </parameters>
@@ -75,65 +75,17 @@
   <created_date>2014&#x2f;04&#x2f;15 16&#x3a;03&#x3a;28.268</created_date>
   <modified_user>-</modified_user>
   <modified_date>2014&#x2f;04&#x2f;15 16&#x3a;03&#x3a;28.268</modified_date>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
+    <is_key_private>N</is_key_private>
   </info>
   <notepads>
-    <notepad>
-      <note>Tenemos que poner por lo menos dos campos para rodear este&#xa;problema&#x3a;&#xa;&#xa;http&#x3a;&#x2f;&#x2f;jira.pentaho.com&#x2f;browse&#x2f;SPARKL-12&#xa;&#xa;Est&#xe1; arreglado en el c&#xf3;digo fuente, pero la versi&#xf3;n que est&#xe1; en&#xa;el Marketplace a&#xfa;n no trae ese arreglo &#x28;2014-04-15&#x29;.</note>
-      <xloc>425</xloc>
-      <yloc>24</yloc>
-      <width>377</width>
-      <heigth>129</heigth>
-      <fontname>Arial</fontname>
-      <fontsize>10</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
   </notepads>
   <order>
-  <hop> <from>Read config</from><to>Get target role</to><enabled>Y</enabled> </hop>
-  <hop> <from>Escape URI</from><to>Get users</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get users</from><to>Get data from XML</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get target role</from><to>Escape URI</to><enabled>Y</enabled> </hop>
   <hop> <from>Get data from XML</from><to>user, role</to><enabled>Y</enabled> </hop>
   <hop> <from>user, role</from><to>OUTPUT</to><enabled>Y</enabled> </hop>
-  <hop> <from>Escape URI</from><to>Log &#x2f;getUsersInRole request URI</to><enabled>N</enabled> </hop>
+  <hop> <from>Get target role</from><to>Call endpoint</to><enabled>Y</enabled> </hop>
+  <hop> <from>Call endpoint</from><to>Get data from XML</to><enabled>Y</enabled> </hop>
   </order>
-  <step>
-    <name>Escape URI</name>
-    <type>Janino</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-       <formula><field_name>escaped_uri</field_name>
-<formula_string>new java.net.URI&#x28;scheme, null, host, port.intValue&#x28;&#x29;, baseURI &#x2b; &#x22;&#x2f;userrolelist&#x2f;getUsersInRole&#x22;, &#x22;role&#x3d;&#x22; &#x2b; targetRole, null&#x29;.toASCIIString&#x28;&#x29;</formula_string>
-<value_type>String</value_type>
-<value_length>-1</value_length>
-<value_precision>-1</value_precision>
-<replace_field/>
-</formula>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>488</xloc>
-      <yloc>190</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
   <step>
     <name>Get data from XML</name>
     <type>getXMLData</type>
@@ -198,8 +150,8 @@
     <sizeFieldName/>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>816</xloc>
-      <yloc>190</yloc>
+      <xloc>484</xloc>
+      <yloc>89</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -231,77 +183,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>324</xloc>
-      <yloc>190</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Get users</name>
-    <type>Rest</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <applicationType>XML</applicationType>
-    <method>GET</method>
-    <url/>
-    <urlInField>Y</urlInField>
-    <dynamicMethod>N</dynamicMethod>
-    <methodFieldName/>
-    <urlField>escaped_uri</urlField>
-    <bodyField/>
-    <httpLogin>&#x24;&#x7b;ARTIFACTCATALOG_RESTAPI_USER&#x7d;</httpLogin>
-    <httpPassword>&#x24;&#x7b;ARTIFACTCATALOG_RESTAPI_PWD&#x7d;</httpPassword>
-    <proxyHost/>
-    <proxyPort/>
-    <preemptive>N</preemptive>
-    <trustStoreFile/>
-    <trustStorePassword>Encrypted </trustStorePassword>
-    <headers>
-      </headers>
-    <parameters>
-      </parameters>
-    <result>
-      <name>result</name>
-      <code/>
-      <response_time/>
-      </result>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>652</xloc>
-      <yloc>190</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Log &#x2f;getUsersInRole request URI</name>
-    <type>WriteToLog</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <loglevel>log_level_basic</loglevel>
-      <displayHeader>Y</displayHeader>
-      <limitRows>N</limitRows>
-      <limitRowsNumber>0</limitRowsNumber>
-      <logmessage/>
-    <fields>
-      </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>486</xloc>
-      <yloc>288</yloc>
+      <xloc>74</xloc>
+      <yloc>89</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -319,48 +202,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1144</xloc>
-      <yloc>190</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Read config</name>
-    <type>Mapping</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <specification_method>filename</specification_method>
-    <trans_object_id/>
-    <trans_name/>
-    <filename>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;..&#x2f;_read-config.ktr</filename>
-    <directory_path/>
-    <mappings>
-      <input>
-      </input>
-      <output>
-    <mapping>    <input_step/>
-    <output_step/>
-    <main_path>Y</main_path>
-    <rename_on_output>N</rename_on_output>
-    <description/>
-    </mapping>      </output>
-          <parameters>       <variablemapping><variable>Internal.Transformation.Filename.Directory</variable><input>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;..</input></variablemapping>
-    <inherit_all_vars>Y</inherit_all_vars>
-    </parameters>
-    </mappings>
-    <allow_multiple_input>N</allow_multiple_input>
-    <allow_multiple_output>N</allow_multiple_output>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>160</xloc>
-      <yloc>190</yloc>
+      <xloc>894</xloc>
+      <yloc>89</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -387,8 +230,46 @@
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>980</xloc>
-      <yloc>190</yloc>
+      <xloc>689</xloc>
+      <yloc>89</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Call endpoint</name>
+    <type>CallEndpointStep</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <serverUrl>http&#x3a;&#x2f;&#x2f;localhost&#x3a;8080&#x2f;pentaho</serverUrl>
+    <userName>admin</userName>
+    <password>password</password>
+    <isBypassingAuthentication>Y</isBypassingAuthentication>
+    <moduleName>platform</moduleName>
+    <isModuleFromField>N</isModuleFromField>
+    <endpointPath>&#x2f;userrolelist&#x2f;getUsersInRole</endpointPath>
+    <httpMethod>GET</httpMethod>
+    <isEndpointFromField>N</isEndpointFromField>
+    <resultField>result</resultField>
+    <statusCodeField/>
+    <responseTimeField/>
+    <fields>
+      <field>
+        <fieldName>targetRole</fieldName>
+        <parameter>role</parameter>
+        <defaultValue/>
+        </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>279</xloc>
+      <yloc>89</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

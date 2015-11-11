@@ -10,39 +10,14 @@
     <directory>&#x2f;</directory>
     <parameters>
         <parameter>
-            <name>baseURI</name>
-            <default_value>&#x2f;pentaho&#x2f;api</default_value>
-            <description/>
-        </parameter>
-        <parameter>
             <name>excludeArtifacts</name>
             <default_value>.&#x2a;&#x28;plugin&#x5b;-&#x5d;samples&#x7c;bi&#x5b;-&#x5d;developers&#x29;.&#x2a;</default_value>
-            <description/>
-        </parameter>
-        <parameter>
-            <name>host</name>
-            <default_value>localhost</default_value>
             <description/>
         </parameter>
         <parameter>
             <name>includeArtifacts</name>
             <default_value>.&#x2a;&#x28;&#x5b;wx&#x5d;cdf&#x7c;prpt&#x7c;xjpivot&#x29;</default_value>
             <description>Only artifacts matching this regexp will be listed. The whole filename needs to match.</description>
-        </parameter>
-        <parameter>
-            <name>jndi</name>
-            <default_value>artifact_catalog</default_value>
-            <description>Name of the JNDI connection to the catalog DB.</description>
-        </parameter>
-        <parameter>
-            <name>port</name>
-            <default_value>8080</default_value>
-            <description/>
-        </parameter>
-        <parameter>
-            <name>scheme</name>
-            <default_value>http</default_value>
-            <description/>
         </parameter>
         <parameter>
             <name>targetRoles</name>
@@ -115,46 +90,19 @@
   <created_date>2014&#x2f;04&#x2f;05 19&#x3a;13&#x3a;43.922</created_date>
   <modified_user>-</modified_user>
   <modified_date>2014&#x2f;04&#x2f;05 19&#x3a;13&#x3a;43.922</modified_date>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
+    <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
-  <connection>
-    <name>Artifact Catalog</name>
-    <server>&#x24;&#x7b;host&#x7d;</server>
-    <type>POSTGRESQL</type>
-    <access>JNDI</access>
-    <database>&#x24;&#x7b;jndi&#x7d;</database>
-    <port>1521</port>
-    <username/>
-    <password>Encrypted </password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>1521</attribute></attribute>
-      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
-      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
-      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
-      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
-    </attributes>
-  </connection>
   <order>
-  <hop> <from>Get Variables</from><to>List All Files</to><enabled>Y</enabled> </hop>
   <hop> <from>List All Files</from><to>Add fake ID</to><enabled>Y</enabled> </hop>
-  <hop> <from>path -&#x3e; jcr_path</from><to>Filter by ACL</to><enabled>Y</enabled> </hop>
-  <hop> <from>Discard fake ID</from><to>Get real ID</to><enabled>Y</enabled> </hop>
-  <hop> <from>Add fake ID</from><to>path -&#x3e; jcr_path</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get real ID</from><to>ordering fields</to><enabled>Y</enabled> </hop>
-  <hop> <from>ordering fields</from><to>OUTPUT</to><enabled>Y</enabled> </hop>
-  <hop> <from>Filter by ACL</from><to>Compute differences</to><enabled>Y</enabled> </hop>
-  <hop> <from>Compute differences</from><to>compute &#x27;isVisible&#x27; flag</to><enabled>Y</enabled> </hop>
-  <hop> <from>path -&#x3e; jcr_path</from><to>Add fake fields</to><enabled>Y</enabled> </hop>
-  <hop> <from>compute &#x27;isVisible&#x27; flag</from><to>Discard fake ID</to><enabled>Y</enabled> </hop>
-  <hop> <from>Add fake fields</from><to>Compute differences</to><enabled>Y</enabled> </hop>
+  <hop> <from>Read config</from><to>List All Files</to><enabled>Y</enabled> </hop>
+  <hop> <from>Discard fake ID</from><to>OUTPUT</to><enabled>Y</enabled> </hop>
+  <hop> <from>Add fake ID</from><to>Join Rows</to><enabled>Y</enabled> </hop>
+  <hop> <from>INPUT</from><to>Join Rows</to><enabled>Y</enabled> </hop>
+  <hop> <from>Join Rows</from><to>Add visible flag</to><enabled>Y</enabled> </hop>
+  <hop> <from>Add visible flag</from><to>Discard fake ID</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>Add fake ID</name>
@@ -179,8 +127,8 @@
       <max_value>999999999</max_value>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>298</xloc>
-      <yloc>100</yloc>
+      <xloc>317</xloc>
+      <yloc>101</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -196,8 +144,8 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <fields>      <field>        <name>jcr_path</name>
-        <rename>path</rename>
+    <fields>      <field>        <name>path</name>
+        <rename/>
         <length>-2</length>
         <precision>-2</precision>
       </field>      <field>        <name>isVisible</name>
@@ -211,14 +159,14 @@
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>566</xloc>
-      <yloc>379</yloc>
+      <xloc>728</xloc>
+      <yloc>101</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Filter by ACL</name>
+    <name>Add visible flag</name>
     <type>Mapping</type>
     <description/>
     <distribute>N</distribute>
@@ -240,8 +188,10 @@
     <main_path>Y</main_path>
     <rename_on_output>Y</rename_on_output>
     <description/>
-       <connector><parent>jcr_path</parent><child>jcr_path</child></connector>
+       <connector><parent>path</parent><child>jcr_path</child></connector>
        <connector><parent>id</parent><child>id</child></connector>
+       <connector><parent>targetUser</parent><child>currentUser</child></connector>
+       <connector><parent>targetRoles</parent><child>currentRoles</child></connector>
     </mapping>      </input>
       <output>
     <mapping>    <input_step/>
@@ -250,132 +200,15 @@
     <rename_on_output>N</rename_on_output>
     <description/>
     </mapping>      </output>
-          <parameters>       <variablemapping><variable>currentUser</variable><input>&#x24;&#x7b;targetUser&#x7d;</input></variablemapping>
-       <variablemapping><variable>currentRoles</variable><input>&#x24;&#x7b;targetRoles&#x7d;</input></variablemapping>
-       <variablemapping><variable>host</variable><input>&#x24;&#x7b;host&#x7d;</input></variablemapping>
-       <variablemapping><variable>scheme</variable><input>&#x24;&#x7b;scheme&#x7d;</input></variablemapping>
-       <variablemapping><variable>port</variable><input>&#x24;&#x7b;port&#x7d;</input></variablemapping>
-       <variablemapping><variable>baseURI</variable><input>&#x24;&#x7b;baseURI&#x7d;</input></variablemapping>
-    <inherit_all_vars>N</inherit_all_vars>
+          <parameters>    <inherit_all_vars>N</inherit_all_vars>
     </parameters>
     </mappings>
     <allow_multiple_input>N</allow_multiple_input>
     <allow_multiple_output>N</allow_multiple_output>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>562</xloc>
+      <xloc>591</xloc>
       <yloc>101</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Get Variables</name>
-    <type>GetVariable</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <name>scheme</name>
-        <variable>&#x24;&#x7b;scheme&#x7d;</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-      </field>
-      <field>
-        <name>host</name>
-        <variable>&#x24;&#x7b;host&#x7d;</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-      </field>
-      <field>
-        <name>port</name>
-        <variable>&#x24;&#x7b;port&#x7d;</variable>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-      </field>
-      <field>
-        <name>baseURI</name>
-        <variable>&#x24;&#x7b;baseURI&#x7d;</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>both</trim_type>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>70</xloc>
-      <yloc>100</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Get real ID</name>
-    <type>DBLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>Artifact Catalog</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema/>
-      <table>resources</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-      <key>
-        <name>path</name>
-        <field>jcr_path</field>
-        <condition>&#x3d;</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>id</name>
-        <rename>id</rename>
-        <default/>
-        <type>Integer</type>
-      </value>
-    </lookup>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>566</xloc>
-      <yloc>465</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -403,10 +236,8 @@
     <main_path>Y</main_path>
     <rename_on_output>Y</rename_on_output>
     <description/>
-       <connector><parent>scheme</parent><child>scheme</child></connector>
-       <connector><parent>host</parent><child>host</child></connector>
-       <connector><parent>port</parent><child>port</child></connector>
-       <connector><parent>baseURI</parent><child>baseURI</child></connector>
+       <connector><parent>includeArtifacts</parent><child>includeArtifacts</child></connector>
+       <connector><parent>excludeArtifacts</parent><child>excludeArtifacts</child></connector>
     </mapping>      </input>
       <output>
     <mapping>    <input_step/>
@@ -421,15 +252,15 @@
     </mappings>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>197</xloc>
-      <yloc>100</yloc>
+      <xloc>180</xloc>
+      <yloc>101</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
     <name>OUTPUT</name>
-    <type>RowsToResult</type>
+    <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -440,79 +271,15 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>749</xloc>
-      <yloc>464</yloc>
+      <xloc>865</xloc>
+      <yloc>101</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>ordering fields</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>      <field>        <name>path</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>isVisible</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>reason</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>id</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>664</xloc>
-      <yloc>466</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>path -&#x3e; jcr_path</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>      <field>        <name>path</name>
-        <rename>jcr_path</rename>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>id</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>432</xloc>
-      <yloc>100</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Compute differences</name>
-    <type>MergeRows</type>
+    <name>Read config</name>
+    <type>Mapping</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -521,60 +288,40 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <keys>
-      <key>id</key>
-    </keys>
-    <values>
-      <value>jcr_path</value>
-    </values>
-<flag_field>flagfield</flag_field>
-<reference>Filter by ACL</reference>
-<compare>Add fake fields</compare>
-    <compare>
-    </compare>
+    <specification_method>filename</specification_method>
+    <trans_object_id/>
+    <trans_name/>
+    <filename>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;..&#x2f;_read-config.ktr</filename>
+    <directory_path/>
+    <mappings>
+      <input>
+      </input>
+      <output>
+    <mapping>    <input_step/>
+    <output_step/>
+    <main_path>Y</main_path>
+    <rename_on_output>N</rename_on_output>
+    <description/>
+    </mapping>      </output>
+          <parameters>       <variablemapping><variable>Internal.Transformation.Filename.Directory</variable><input>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;..</input></variablemapping>
+    <inherit_all_vars>Y</inherit_all_vars>
+    </parameters>
+    </mappings>
+    <allow_multiple_input>N</allow_multiple_input>
+    <allow_multiple_output>N</allow_multiple_output>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>563</xloc>
-      <yloc>199</yloc>
+      <xloc>43</xloc>
+      <yloc>101</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>compute &#x27;isVisible&#x27; flag</name>
-    <type>ScriptValueMod</type>
+    <name>INPUT</name>
+    <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>&#x2f;&#x2f;Script here&#xa;&#xa;var isVisible &#x3d; &#x28;flagfield &#x3d;&#x3d; &#x27;identical&#x27; &#x7c;&#x7c; isVisible&#x29;&#x3b;</jsScript_script>
-      </jsScript>    </jsScripts>    <fields>      <field>        <name>isVisible</name>
-        <rename>isVisible</rename>
-        <type>Boolean</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>564</xloc>
-      <yloc>280</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Add fake fields</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
          <partitioning>
@@ -583,34 +330,54 @@
            </partitioning>
     <fields>
       <field>
-        <name>reason</name>
+        <name>targetUser</name>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
         <length>-1</length>
         <precision>-1</precision>
-        <set_empty_string>Y</set_empty_string>
       </field>
       <field>
-        <name>isVisible</name>
-        <type>Boolean</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>Y</nullif>
+        <name>targetRoles</name>
+        <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
       </field>
+        <select_unspecified>N</select_unspecified>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>431</xloc>
-      <yloc>201</yloc>
+      <xloc>454</xloc>
+      <yloc>198</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Join Rows</name>
+    <type>JoinRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
+      <prefix>out</prefix>
+      <cache_size>500</cache_size>
+      <main/>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue/>
+ <function>&#x3d;</function>
+ <rightvalue/>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>454</xloc>
+      <yloc>101</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

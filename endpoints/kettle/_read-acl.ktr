@@ -70,16 +70,21 @@
   <created_date>2014&#x2f;04&#x2f;04 19&#x3a;47&#x3a;12.090</created_date>
   <modified_user>-</modified_user>
   <modified_date>2014&#x2f;04&#x2f;04 19&#x3a;47&#x3a;12.090</modified_date>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
+    <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
   <order>
-  <hop> <from>Get ACL with FileResource</from><to>OUTPUT</to><enabled>Y</enabled> </hop>
-  <hop> <from>INPUT</from><to>Get ACL with FileResource</to><enabled>Y</enabled> </hop>
+  <hop> <from>Call endpoint</from><to>Parse &#x3c;aces&#x3e;</to><enabled>Y</enabled> </hop>
+  <hop> <from>Select fields</from><to>OUTPUT</to><enabled>Y</enabled> </hop>
+  <hop> <from>Prepare query</from><to>Call endpoint</to><enabled>Y</enabled> </hop>
+  <hop> <from>INPUT</from><to>Prepare query</to><enabled>Y</enabled> </hop>
+  <hop> <from>Parse &#x3c;aces&#x3e;</from><to>Select fields</to><enabled>Y</enabled> </hop>
   </order>
   <step>
-    <name>Get ACL with FileResource</name>
-    <type>UserDefinedJavaClass</type>
+    <name>Call endpoint</name>
+    <type>CallEndpointStep</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -88,100 +93,24 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-
-    <definitions>
-        <definition>
-        <class_type>TRANSFORM_CLASS</class_type>
-
-        <class_name>Processor</class_name>
-
-        <class_source><![CDATA[import java.util.Iterator;
-
-import org.pentaho.platform.repository2.unified.webservices.RepositoryFileAclAceDto;
-import org.pentaho.platform.repository2.unified.webservices.RepositoryFileAclDto;
-import org.pentaho.platform.repository2.unified.webservices.RepositoryFileDto;
-import org.pentaho.platform.web.http.api.resources.FileResource;
-
-final FileResource fileRes = new FileResource();
-
-public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException
-{
-	Object[] r = getRow();
-	if (r == null) {
-		setOutputDone();
-		return false;
-	}
-    if (first)
-    {
-        first = false;
-    }
-
-    final int outputRowSize = getInputRowMeta().size() + 2;
-    r = createOutputRow(r, outputRowSize);
-
-    // JCR paths use colons instead of spaces: replace slashes
-    // by colons if we the path in the row starts with a slash.
-    String path = get(Fields.In, "jcr_path").getString(r);
-    if (path.startsWith("/")) {
-      path = path.replaceAll("/", ":");
-    }
-
-    try {
-      final RepositoryFileDto repositoryFileDto = fileRes.doGetProperties(path);
-      //System.out.println(repositoryFileDto);
-
-      if (repositoryFileDto != null) {
-        final RepositoryFileAclDto repositoryFileAclDto = fileRes.doGetFileAcl(path);
-
-        r = createOutputRow(r, outputRowSize);
-        get(Fields.Out, "recipient").setValue(r, repositoryFileAclDto.getOwner());
-        get(Fields.Out, "recipientType").setValue(r, Long.valueOf(0));
-        putRow(data.outputRowMeta, r);
-
-        for (Iterator it = repositoryFileAclDto.getAces().iterator(); it.hasNext(); ) {
-          final RepositoryFileAclAceDto ace = (RepositoryFileAclAceDto)it.next();
-          r = createOutputRow(r, outputRowSize);
-          get(Fields.Out, "recipient").setValue(r, ace.getRecipient());
-          get(Fields.Out, "recipientType").setValue(r, Long.valueOf(ace.getRecipientType()));
-          putRow(data.outputRowMeta, r);
-        }
-      }
-    } catch (Exception ex) {
-      // missing file or access denied: skip!
-      //System.out.println(ex);
-    }
-
-	return true;
-}
-]]></class_source>
-        </definition>
-    </definitions>
+    <serverUrl>http&#x3a;&#x2f;&#x2f;localhost&#x3a;8080&#x2f;pentaho</serverUrl>
+    <userName>Admin</userName>
+    <password>password</password>
+    <isBypassingAuthentication>Y</isBypassingAuthentication>
+    <moduleName>module</moduleName>
+    <isModuleFromField>N</isModuleFromField>
+    <endpointPath>url</endpointPath>
+    <httpMethod>method</httpMethod>
+    <isEndpointFromField>Y</isEndpointFromField>
+    <resultField>result</resultField>
+    <statusCodeField>status</statusCodeField>
+    <responseTimeField/>
     <fields>
-        <field>
-        <field_name>recipient</field_name>
-
-        <field_type>String</field_type>
-
-        <field_length>-1</field_length>
-
-        <field_precision>-1</field_precision>
-
-        </field>
-        <field>
-        <field_name>recipientType</field_name>
-
-        <field_type>Integer</field_type>
-
-        <field_length>-1</field_length>
-
-        <field_precision>-1</field_precision>
-
-        </field>
-    </fields><clear_result_fields>N</clear_result_fields>
-<info_steps></info_steps><target_steps></target_steps><usage_parameters></usage_parameters>     <cluster_schema/>
+    </fields>
+     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>462</xloc>
-      <yloc>168</yloc>
+      <xloc>354</xloc>
+      <yloc>164</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -204,12 +133,18 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
         <length>-1</length>
         <precision>-1</precision>
       </field>
+      <field>
+        <name>id</name>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
         <select_unspecified>N</select_unspecified>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>178</xloc>
-      <yloc>168</yloc>
+      <xloc>68</xloc>
+      <yloc>164</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -227,8 +162,159 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>746</xloc>
-      <yloc>168</yloc>
+      <xloc>926</xloc>
+      <yloc>164</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Parse &#x3c;aces&#x3e;</name>
+    <type>getXMLData</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <include>N</include>
+    <include_field/>
+    <rownum>N</rownum>
+    <addresultfile>N</addresultfile>
+    <namespaceaware>N</namespaceaware>
+    <ignorecomments>N</ignorecomments>
+    <readurl>N</readurl>
+    <validating>N</validating>
+    <usetoken>N</usetoken>
+    <IsIgnoreEmptyFile>Y</IsIgnoreEmptyFile>
+    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
+    <rownum_field/>
+    <encoding>UTF-8</encoding>
+    <file>
+      <name>&#x2f;tmp&#x2f;acl.xml</name>
+      <filemask/>
+      <exclude_filemask/>
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+    </file>
+    <fields>
+      <field>
+        <name>recipient</name>
+        <xpath>recipient</xpath>
+        <element_type>node</element_type>
+        <result_type>valueof</result_type>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>recipientType</name>
+        <xpath>recipientType</xpath>
+        <element_type>node</element_type>
+        <result_type>valueof</result_type>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+    </fields>
+    <limit>0</limit>
+    <loopxpath>&#x2f;repositoryFileAclDto&#x2f;aces</loopxpath>
+    <IsInFields>Y</IsInFields>
+    <IsAFile>N</IsAFile>
+    <XmlField>result</XmlField>
+    <prunePath/>
+    <shortFileFieldName/>
+    <pathFieldName/>
+    <hiddenFieldName/>
+    <lastModificationTimeFieldName/>
+    <uriNameFieldName/>
+    <rootUriNameFieldName/>
+    <extensionFieldName/>
+    <sizeFieldName/>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>497</xloc>
+      <yloc>164</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Select fields</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>        <select_unspecified>N</select_unspecified>
+      <remove>        <name>module</name>
+      </remove>      <remove>        <name>method</name>
+      </remove>      <remove>        <name>result</name>
+      </remove>      <remove>        <name>status</name>
+      </remove>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>783</xloc>
+      <yloc>164</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Prepare query</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>&#x2f;&#x2f;Script here&#xa;&#xa;var url &#x3d; &#x22;&#x2f;repo&#x2f;files&#x2f;&#x22; &#x2b; encodeURIComponent&#x28;jcr_path.replace&#x28;&#x2f;&#x5c;&#x2f;&#x2f;g, &#x22;&#x3a;&#x22;&#x29;&#x29; &#x2b; &#x22;&#x2f;acl&#x22;&#x3b;&#xa;var module &#x3d; &#x22;platform&#x22;&#x3b;&#xa;var method &#x3d; &#x22;GET&#x22;&#x3b;</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>      <field>        <name>url</name>
+        <rename>url</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>module</name>
+        <rename>module</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>method</name>
+        <rename>method</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>211</xloc>
+      <yloc>164</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

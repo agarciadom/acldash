@@ -1,0 +1,1463 @@
+{
+ "components": {
+  "rows": [
+   {
+    "id": "GENERIC",
+    "name": "Generic",
+    "parent": "UnIqEiD",
+    "properties": [
+     {
+      "name": "Group",
+      "type": "Label",
+      "value": "Generic"
+     }
+    ],
+    "type": "Label",
+    "typeDesc": "<i>Group</i>"
+   },
+   {
+    "id": "174c0b90-580f-89e8-b175-d6c80b42cde5",
+    "parent": "GENERIC",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "targetRole"
+     },
+     {
+      "name": "propertyValue",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "parameterViewRole",
+      "type": "parameterViewRoleCustom",
+      "value": "unused"
+     },
+     {
+      "name": "bookmarkable",
+      "type": "Boolean",
+      "value": "false"
+     },
+     {
+      "name": "public",
+      "type": "Boolean",
+      "value": "false"
+     }
+    ],
+    "type": "ComponentsParameter",
+    "typeDesc": "Simple parameter"
+   },
+   {
+    "id": "fa1f9d4d-3aea-6486-5133-055a13be2e7c",
+    "parent": "GENERIC",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "refreshParam"
+     },
+     {
+      "name": "propertyValue",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "parameterViewRole",
+      "type": "parameterViewRoleCustom",
+      "value": "unused"
+     },
+     {
+      "name": "bookmarkable",
+      "type": "Boolean",
+      "value": "false"
+     },
+     {
+      "name": "public",
+      "type": "Boolean",
+      "value": "false"
+     }
+    ],
+    "type": "ComponentsParameter",
+    "typeDesc": "Simple parameter"
+   },
+   {
+    "id": "SELECTORS",
+    "name": "Selects",
+    "parent": "UnIqEiD",
+    "properties": [
+     {
+      "name": "Group",
+      "type": "Label",
+      "value": "Selects"
+     }
+    ],
+    "type": "Label",
+    "typeDesc": "<i>Group</i>"
+   },
+   {
+    "id": "b954afc0-0b6c-78ed-8ffc-9433747892ca",
+    "parent": "SELECTORS",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "selectTargetRole"
+     },
+     {
+      "name": "parameter",
+      "type": "Parameter",
+      "value": "${p:targetRole}"
+     },
+     {
+      "name": "listeners",
+      "type": "Listeners",
+      "value": "[]"
+     },
+     {
+      "name": "parameters",
+      "type": "ValuesArray",
+      "value": "[[\"targetRole\",\"targetRole\"]]"
+     },
+     {
+      "name": "externalPlugin",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "valueAsId",
+      "type": "Boolean",
+      "value": "true"
+     },
+     {
+      "name": "dataSource",
+      "type": "Datasource",
+      "value": "allRolesDS"
+     },
+     {
+      "name": "valuesArray",
+      "type": "ValuesArray",
+      "value": "[]"
+     },
+     {
+      "name": "priority",
+      "type": "Integer",
+      "value": 5
+     },
+     {
+      "name": "refreshPeriod",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "htmlObject",
+      "type": "HtmlObject",
+      "value": "${p:selectRolePanel}"
+     },
+     {
+      "name": "executeAtStart",
+      "type": "Boolean",
+      "value": "true"
+     },
+     {
+      "name": "preExecution",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "postExecution",
+      "type": "JavaScript",
+      "value": "function f() {\n    var role = Dashboards.i18nSupport.prop(\"role\");\n    $(\"#\" + this.htmlObject).prepend(\n        $(\"<label></label>\")\n            .text(role + \":\")\n            .css(\"display\", \"inline-block\")\n            .css(\"width\", \"100px\")\n    );\n} "
+     },
+     {
+      "name": "postFetch",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "preChange",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "postChange",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "extraOptions",
+      "type": "OptionArray",
+      "value": "[]"
+     },
+     {
+      "name": "tooltip",
+      "type": "Html",
+      "value": ""
+     }
+    ],
+    "type": "ComponentsSelect",
+    "typeDesc": "Select Component"
+   },
+   {
+    "id": "OTHERCOMPONENTS",
+    "name": "Others",
+    "parent": "UnIqEiD",
+    "properties": [
+     {
+      "name": "Group",
+      "type": "Label",
+      "value": "Others"
+     }
+    ],
+    "type": "Label",
+    "typeDesc": "<i>Group</i>"
+   },
+   {
+    "id": "3c1613cb-ddac-b7b0-a77e-9bf53988b004",
+    "parent": "OTHERCOMPONENTS",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "filesForRoleTable"
+     },
+     {
+      "name": "expandContainerObject",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "listeners",
+      "type": "Listeners",
+      "value": "['${p:targetRole}','${p:refreshParam}']"
+     },
+     {
+      "name": "oLanguage",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "language",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "colFormats",
+      "type": "Array",
+      "value": "[]"
+     },
+     {
+      "name": "colHeaders",
+      "type": "Array",
+      "value": "[\"Path\",\"Visible?\"]"
+     },
+     {
+      "name": "colSortable",
+      "type": "Array",
+      "value": "[]"
+     },
+     {
+      "name": "colTypes",
+      "type": "colTypesCustom",
+      "value": "[\"string\",\"string\"]"
+     },
+     {
+      "name": "colWidths",
+      "type": "Array",
+      "value": "[\"80%\",\"20%\"]"
+     },
+     {
+      "name": "expandParameters",
+      "type": "ValuesArray",
+      "value": "[]"
+     },
+     {
+      "name": "parameters",
+      "type": "ValuesArray",
+      "value": "[[\"targetRole\",\"targetRole\"]]"
+     },
+     {
+      "name": "displayLength",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "expandOnClick",
+      "type": "Boolean",
+      "value": "false"
+     },
+     {
+      "name": "filter",
+      "type": "Boolean",
+      "value": "true"
+     },
+     {
+      "name": "info",
+      "type": "Boolean",
+      "value": "true"
+     },
+     {
+      "name": "lengthChange",
+      "type": "Boolean",
+      "value": "true"
+     },
+     {
+      "name": "paginate",
+      "type": "Boolean",
+      "value": "true"
+     },
+     {
+      "name": "sort",
+      "type": "Boolean",
+      "value": "true"
+     },
+     {
+      "name": "colSearchable",
+      "type": "Array",
+      "value": "[]"
+     },
+     {
+      "name": "drawCallback",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "dataSource",
+      "type": "Datasource",
+      "value": "filesForRoleDS"
+     },
+     {
+      "name": "sDom",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "sortBy",
+      "type": "SortByArray",
+      "value": "[[\"0\",\"asc\"],[\"1\",\"asc\"]]"
+     },
+     {
+      "name": "priority",
+      "type": "Integer",
+      "value": "6"
+     },
+     {
+      "name": "refreshPeriod",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "paginationType",
+      "type": "PaginationType",
+      "value": "two_button"
+     },
+     {
+      "name": "tableStyle",
+      "type": "TableStyle",
+      "value": "themeroller"
+     },
+     {
+      "name": "htmlObject",
+      "type": "HtmlObject",
+      "value": "${p:filesPanel}"
+     },
+     {
+      "name": "executeAtStart",
+      "type": "Boolean",
+      "value": "true"
+     },
+     {
+      "name": "paginateServerside",
+      "type": "Boolean",
+      "value": "false"
+     },
+     {
+      "name": "preExecution",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "postExecution",
+      "type": "JavaScript",
+      "value": "function f() {\n    var myself = this;\n    var onlyVisible = Dashboards.i18nSupport.prop(\"resource.onlyVisible\");\n    var onlyWithRID = Dashboards.i18nSupport.prop(\"resource.onlyWithRID\");\n\n    var divExtraFilters = $(\"<div></div>\")\n        .css(\"width\", \"30%\")\n        .css(\"line-height\", \"32px\")\n        .css(\"float\", \"left\")\n        .append(\n            $(\"<label></label>\")\n                .text(onlyVisible)\n                .prepend(\n                    $(\"<input></input>\")\n                        .attr(\"type\", \"checkbox\")\n                        .change(function () {\n                            var dataTable = $(\"#\" + myself.htmlObject + \"Table\").dataTable();\n                            dataTable.fnFilter(this.checked ? \"true\" : \"\", 1);\n                        })\n                )\n                .css(\"margin-right\", \"10px\")\n        );\n\n    $(\"#\" + this.htmlObject)\n        .find(\".dataTables_length\")\n        .css(\"width\", \"20%\")\n        .after(divExtraFilters);\n} "
+     },
+     {
+      "name": "postFetch",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "preChange",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "postChange",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "extraOptions",
+      "type": "OptionArray",
+      "value": "[]"
+     },
+     {
+      "name": "tooltip",
+      "type": "Html",
+      "value": ""
+     },
+     {
+      "name": "clickAction",
+      "type": "JavaScript",
+      "value": "function f(ev) {\n    var cannot_revoke = Dashboards.i18nSupport.prop(\"error.cannot_revoke\"), \n        success = Dashboards.i18nSupport.prop(\"success.permissions\");\n    \n    if (ev.category == 'path') {\n        var viewURL = artifactCatalog.getViewURL(ev.value);\n        window.open(viewURL);\n    }\n     else if (ev.category == 'resourceID') {\n        var editURL;\n        if (ev.value !== null) {\n            editURL = 'resourceform?resourceID=' + ev.value;\n        } else {\n            editURL = 'resourceform?url=' + ev.series;\n        }\n        window.open(editURL);\n    }\n    else if (ev.category == 'isVisible') {\n        artifactCatalog.runEndpoint('togglePermission', {\n            params: {\n                'fileName': ev.series,\n                'user': Dashboards.getParameterValue(\"targetRole\"),\n                'visible': ev.value,\n            },\n            success: function (data) {\n                var statusHTML = '';\n            \n                if (Dashboards.getParameterValue(\"targetRole\") == 'Administrator') {\n                    statusHTML = cannot_revoke;\n                } else {\n                    statusHTML = success;\n\n                    var dataTable = ev.target.closest(\"table\").dataTable();\n                    var oldValue = ev.target.text();\n                    var newValue = oldValue === \"true\" ? \"false\" : \"true\";\n                    dataTable.fnUpdate(newValue, ev.rowIdx, ev.colIdx);\n                }\n\n                var statusPanel = $(\"#statusPanel\");\n                statusPanel.stop(true, true);\n                statusPanel.text(statusHTML).show().fadeOut(3000);\n            }      \n        });\n    }\n\n} "
+     }
+    ],
+    "type": "ComponentsTable",
+    "typeDesc": "table Component"
+   },
+   {
+    "id": "824dc889-1f3d-f907-555c-214b8238e880",
+    "parent": "OTHERCOMPONENTS",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "refreshButton"
+     },
+     {
+      "name": "label",
+      "type": "String",
+      "value": "Refresh"
+     },
+     {
+      "name": "listeners",
+      "type": "Listeners",
+      "value": "[]"
+     },
+     {
+      "name": "actionParameters",
+      "type": "ValuesArray",
+      "value": "[]"
+     },
+     {
+      "name": "expression",
+      "type": "JavaScript",
+      "value": "function f() {\n    Dashboards.fireChange(\"refreshParam\", \"1\");\n}"
+     },
+     {
+      "name": "failureCallback",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "successCallback",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "Datasource",
+      "type": "Datasource",
+      "value": ""
+     },
+     {
+      "name": "priority",
+      "type": "Integer",
+      "value": 5
+     },
+     {
+      "name": "refreshPeriod",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "buttonStyle",
+      "type": "TableStyle",
+      "value": "themeroller"
+     },
+     {
+      "name": "htmlObject",
+      "type": "HtmlObject",
+      "value": "${p:refreshPanel}"
+     },
+     {
+      "name": "executeAtStart",
+      "type": "Boolean",
+      "value": "true"
+     },
+     {
+      "name": "preExecution",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "postExecution",
+      "type": "JavaScript",
+      "value": "function () {\n    $(\"#refreshPanel button.ui-button span.ui-button-text\").text(Dashboards.i18nSupport.prop(\"refresh\"));\n} "
+     },
+     {
+      "name": "tooltip",
+      "type": "Html",
+      "value": ""
+     }
+    ],
+    "type": "ComponentsbuttonComponent",
+    "typeDesc": "Button Component"
+   },
+   {
+    "id": "d9033c48-0bca-8e59-a202-18720e5e8a6f",
+    "parent": "OTHERCOMPONENTS",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "usersForRoleTable"
+     },
+     {
+      "name": "expandContainerObject",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "listeners",
+      "type": "Listeners",
+      "value": "['${p:targetRole}','${p:refreshParam}']"
+     },
+     {
+      "name": "oLanguage",
+      "type": "JavaScript",
+      "value": "artifactCatalog.i18n() "
+     },
+     {
+      "name": "language",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "colFormats",
+      "type": "Array",
+      "value": "[]"
+     },
+     {
+      "name": "colHeaders",
+      "type": "Array",
+      "value": "[\"Username\",\"Role (hidden)\"]"
+     },
+     {
+      "name": "colSortable",
+      "type": "Array",
+      "value": "[]"
+     },
+     {
+      "name": "colTypes",
+      "type": "colTypesCustom",
+      "value": "[\"string\",\"hidden\"]"
+     },
+     {
+      "name": "colWidths",
+      "type": "Array",
+      "value": "[]"
+     },
+     {
+      "name": "expandParameters",
+      "type": "ValuesArray",
+      "value": "[]"
+     },
+     {
+      "name": "parameters",
+      "type": "ValuesArray",
+      "value": "[[\"targetRole\",\"targetRole\"]]"
+     },
+     {
+      "name": "displayLength",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "expandOnClick",
+      "type": "Boolean",
+      "value": "false"
+     },
+     {
+      "name": "filter",
+      "type": "Boolean",
+      "value": "false"
+     },
+     {
+      "name": "info",
+      "type": "Boolean",
+      "value": "false"
+     },
+     {
+      "name": "lengthChange",
+      "type": "Boolean",
+      "value": "false"
+     },
+     {
+      "name": "paginate",
+      "type": "Boolean",
+      "value": "true"
+     },
+     {
+      "name": "sort",
+      "type": "Boolean",
+      "value": "false"
+     },
+     {
+      "name": "colSearchable",
+      "type": "Array",
+      "value": "[]"
+     },
+     {
+      "name": "drawCallback",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "dataSource",
+      "type": "Datasource",
+      "value": "usersForRoleDS"
+     },
+     {
+      "name": "sDom",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "sortBy",
+      "type": "SortByArray",
+      "value": "[[\"0\",\"ASC\"]]"
+     },
+     {
+      "name": "priority",
+      "type": "Integer",
+      "value": "6"
+     },
+     {
+      "name": "refreshPeriod",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "paginationType",
+      "type": "PaginationType",
+      "value": "two_button"
+     },
+     {
+      "name": "tableStyle",
+      "type": "TableStyle",
+      "value": "themeroller"
+     },
+     {
+      "name": "htmlObject",
+      "type": "HtmlObject",
+      "value": "${p:usersPanel}"
+     },
+     {
+      "name": "executeAtStart",
+      "type": "Boolean",
+      "value": "true"
+     },
+     {
+      "name": "paginateServerside",
+      "type": "Boolean",
+      "value": "false"
+     },
+     {
+      "name": "preExecution",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "postExecution",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "postFetch",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "preChange",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "postChange",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "extraOptions",
+      "type": "OptionArray",
+      "value": "[]"
+     },
+     {
+      "name": "tooltip",
+      "type": "Html",
+      "value": ""
+     },
+     {
+      "name": "clickAction",
+      "type": "JavaScript",
+      "value": "function f(ev) {\n    \n   // var viewURL = artifactCatalog.getViewURL(ev.category);\n    window.open(\"userinformation?user=\"+ev.value);\n    \n}"
+     }
+    ],
+    "type": "ComponentsTable",
+    "typeDesc": "table Component"
+   },
+   {
+    "id": "011011c3-b47b-3836-370f-95a03c1d544b",
+    "parent": "OTHERCOMPONENTS",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "loadQueryParameters"
+     },
+     {
+      "name": "listeners",
+      "type": "Listeners",
+      "value": "[]"
+     },
+     {
+      "name": "expression",
+      "type": "JavaScript",
+      "value": "function f() {\n    // role\n    var role = Dashboards.getQueryParameter(\"role\");\n    Dashboards.fireChange(\"targetRole\", role);\n    \n}"
+     },
+     {
+      "name": "priority",
+      "type": "Integer",
+      "value": 5
+     },
+     {
+      "name": "refreshPeriod",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "htmlObject",
+      "type": "HtmlObject",
+      "value": ""
+     },
+     {
+      "name": "executeAtStart",
+      "type": "Boolean",
+      "value": "true"
+     },
+     {
+      "name": "preExecution",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "postExecution",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "tooltip",
+      "type": "Html",
+      "value": ""
+     }
+    ],
+    "type": "ComponentstextComponent",
+    "typeDesc": "Text Component"
+   }
+  ]
+ },
+ "datasources": {
+  "rows": [
+   {
+    "id": "ACLDASH_CPKENDPOINTS",
+    "name": "ACLDASH Endpoints",
+    "parent": "UnIqEiD",
+    "properties": [
+     {
+      "name": "Group",
+      "type": "Label",
+      "value": "ACLDASH Endpoints"
+     }
+    ],
+    "type": "Label",
+    "typeDesc": "<i>Group</i>"
+   },
+   {
+    "id": "0ec7dfd8-42e0-39d5-29ec-9b51ee5617ae",
+    "meta": "CPK",
+    "meta_endpoint": "listFilesForRole",
+    "meta_pluginId": "acldash",
+    "parent": "ACLDASH_CPKENDPOINTS",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "filesForRoleDS"
+     },
+     {
+      "name": "stepName",
+      "type": "String",
+      "value": "OUTPUT"
+     },
+     {
+      "name": "kettleOutput",
+      "type": "kettleOutputCustom",
+      "value": "Inferred"
+     }
+    ],
+    "type": "Componentsacldash_listFilesForRole_CPKENDPOINT",
+    "typeDesc": "listFilesForRole Endpoint"
+   },
+   {
+    "id": "8b673423-1f64-e350-9502-d165c0643c93",
+    "meta": "CPK",
+    "meta_endpoint": "listUsersForRole",
+    "meta_pluginId": "acldash",
+    "parent": "ACLDASH_CPKENDPOINTS",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "usersForRoleDS"
+     },
+     {
+      "name": "stepName",
+      "type": "String",
+      "value": "OUTPUT"
+     },
+     {
+      "name": "kettleOutput",
+      "type": "kettleOutputCustom",
+      "value": "Inferred"
+     }
+    ],
+    "type": "Componentsacldash_listUsersForRole_CPKENDPOINT",
+    "typeDesc": "listUsersForRole Endpoint"
+   },
+   {
+    "id": "caceb099-ef89-9373-0f50-9cf159c45565",
+    "type": "Componentsacldash_listRoles_CPKENDPOINT",
+    "typeDesc": "listRoles Endpoint",
+    "parent": "ACLDASH_CPKENDPOINTS",
+    "properties": [
+     {
+      "name": "name",
+      "value": "allRolesDS",
+      "type": "Id"
+     },
+     {
+      "name": "stepName",
+      "value": "OUTPUT",
+      "type": "String"
+     },
+     {
+      "name": "kettleOutput",
+      "value": "Inferred",
+      "type": "kettleOutputCustom"
+     }
+    ],
+    "meta": "CPK",
+    "meta_pluginId": "acldash",
+    "meta_endpoint": "listRoles"
+   }
+  ]
+ },
+ "filename": "/system/acldash/dashboards/admin/roleInformation.cdfde",
+ "layout": {
+  "rows": [
+   {
+    "id": "86c5d154-c267-7464-0c18-5d8c496b98a0",
+    "parent": "UnIqEiD",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "extraCSS"
+     },
+     {
+      "name": "resourceCode",
+      "type": "Resource",
+      "value": "#filesPanelTable tbody .column0, #filesPanelTable tbody .column2, #filesPanelTable tbody .column1, #sectionsPanelTable tbody .column2 {\n    text-decoration: underline;\n    color: blue;\n    cursor: pointer;\n} "
+     },
+     {
+      "name": "resourceType",
+      "type": "Label",
+      "value": "Css"
+     }
+    ],
+    "type": "LayoutResourceCode",
+    "typeDesc": "Resource"
+   },
+   {
+    "id": "0aa5deeb-a702-13e9-58da-26275e8df910",
+    "parent": "UnIqEiD",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "projectCSS"
+     },
+     {
+      "name": "resourceFile",
+      "type": "ResourceFile",
+      "value": "/pentaho/api/repos/acldash/static/custom/css/acldash.css"
+     },
+     {
+      "name": "resourceType",
+      "type": "Label",
+      "value": "Css"
+     }
+    ],
+    "type": "LayoutResourceFile",
+    "typeDesc": "Resource"
+   },
+   {
+    "id": "51aba4e6-5beb-2f05-4d86-96e2ef3f49f0",
+    "parent": "UnIqEiD",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "projectJS"
+     },
+     {
+      "name": "resourceFile",
+      "type": "ResourceFile",
+      "value": "/pentaho/api/repos/acldash/static/custom/js/acldash.js"
+     },
+     {
+      "name": "resourceType",
+      "type": "Label",
+      "value": "Javascript"
+     }
+    ],
+    "type": "LayoutResourceFile",
+    "typeDesc": "Resource"
+   },
+   {
+    "id": "cda9bf5f-0f51-13db-68ac-616cef3e73be",
+    "parent": "UnIqEiD",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "Spacer"
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": "5"
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutRow",
+    "typeDesc": "Row"
+   },
+   {
+    "id": "9b5e4665-60dd-d123-d49a-7cb9072a0540",
+    "parent": "UnIqEiD",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "Body"
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": "#ffffff"
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": "cdfdd-round"
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutRow",
+    "typeDesc": "Row"
+   },
+   {
+    "id": "a75b059a-0f5b-deda-6d3f-aeba72af2fe5",
+    "parent": "9b5e4665-60dd-d123-d49a-7cb9072a0540",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "Content"
+     },
+     {
+      "name": "columnSpan",
+      "type": "Integer",
+      "value": "24"
+     },
+     {
+      "name": "columnPrepend",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "columnAppend",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "columnPrependTop",
+      "type": "Boolean",
+      "value": false
+     },
+     {
+      "name": "columnAppendBottom",
+      "type": "Boolean",
+      "value": false
+     },
+     {
+      "name": "columnBorder",
+      "type": "Boolean",
+      "value": false
+     },
+     {
+      "name": "columnBigBorder",
+      "type": "Boolean",
+      "value": false
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutColumn",
+    "typeDesc": "Column"
+   },
+   {
+    "id": "cbfee5d3-92e7-2f3a-75de-69e81df1951f",
+    "parent": "a75b059a-0f5b-deda-6d3f-aeba72af2fe5",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "selectRolePanel"
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutRow",
+    "typeDesc": "Row"
+   },
+   {
+    "id": "234a0f95-444c-f924-75ae-1e65a8158b6e",
+    "parent": "a75b059a-0f5b-deda-6d3f-aeba72af2fe5",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "refreshPanel"
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": "right"
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutRow",
+    "typeDesc": "Row"
+   },
+   {
+    "id": "63f50d56-0375-c60d-a6e3-683b09e3d113",
+    "parent": "a75b059a-0f5b-deda-6d3f-aeba72af2fe5",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "spacer"
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": "20"
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutRow",
+    "typeDesc": "Row"
+   },
+   {
+    "id": "a31491ea-5d22-e091-67e8-f585075dd9b2",
+    "parent": "a75b059a-0f5b-deda-6d3f-aeba72af2fe5",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "fileRolesTitle"
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutRow",
+    "typeDesc": "Row"
+   },
+   {
+    "id": "25cd6c23-b8cd-fed3-4679-89e61dcc04bf",
+    "parent": "a75b059a-0f5b-deda-6d3f-aeba72af2fe5",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "roleInfoPanel"
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": "#ffffff"
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutRow",
+    "typeDesc": "Row"
+   },
+   {
+    "id": "5d12874e-0081-1d9b-34df-e9c0e07dfb89",
+    "parent": "25cd6c23-b8cd-fed3-4679-89e61dcc04bf",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "usersPanel"
+     },
+     {
+      "name": "columnSpan",
+      "type": "Integer",
+      "value": "4"
+     },
+     {
+      "name": "columnPrepend",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "columnAppend",
+      "type": "Integer",
+      "value": "1"
+     },
+     {
+      "name": "columnPrependTop",
+      "type": "Boolean",
+      "value": "false"
+     },
+     {
+      "name": "columnAppendBottom",
+      "type": "Boolean",
+      "value": "false"
+     },
+     {
+      "name": "columnBorder",
+      "type": "Boolean",
+      "value": "false"
+     },
+     {
+      "name": "columnBigBorder",
+      "type": "Boolean",
+      "value": "false"
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutColumn",
+    "typeDesc": "Column"
+   },
+   {
+    "id": "cf5c2465-0716-d37c-87f5-b1cc1834c947",
+    "parent": "25cd6c23-b8cd-fed3-4679-89e61dcc04bf",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "filesPanel"
+     },
+     {
+      "name": "columnSpan",
+      "type": "Integer",
+      "value": "19"
+     },
+     {
+      "name": "columnPrepend",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "columnAppend",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "columnPrependTop",
+      "type": "Boolean",
+      "value": "false"
+     },
+     {
+      "name": "columnAppendBottom",
+      "type": "Boolean",
+      "value": "false"
+     },
+     {
+      "name": "columnBorder",
+      "type": "Boolean",
+      "value": "false"
+     },
+     {
+      "name": "columnBigBorder",
+      "type": "Boolean",
+      "value": "false"
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutColumn",
+    "typeDesc": "Column"
+   },
+   {
+    "id": "6af30d82-4a14-a158-9eff-249b08108845",
+    "parent": "UnIqEiD",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "statusPanel"
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutRow",
+    "typeDesc": "Row"
+   }
+  ],
+  "title": "Top Filter Template"
+ }
+}

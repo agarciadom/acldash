@@ -75,70 +75,15 @@
   <created_date>2014&#x2f;04&#x2f;12 20&#x3a;50&#x3a;11.365</created_date>
   <modified_user>-</modified_user>
   <modified_date>2014&#x2f;04&#x2f;12 20&#x3a;50&#x3a;11.365</modified_date>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
+    <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
   <order>
-  <hop> <from>Get target user</from><to>Specify .ktr for roles</to><enabled>Y</enabled> </hop>
-  <hop> <from>Read config</from><to>Get target user</to><enabled>Y</enabled> </hop>
-  <hop> <from>Specify .ktr for roles</from><to>Get roles</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get roles</from><to>OUTPUT</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get target user</from><to>List roles</to><enabled>Y</enabled> </hop>
+  <hop> <from>List roles</from><to>OUTPUT</to><enabled>Y</enabled> </hop>
   </order>
-  <step>
-    <name>Get roles</name>
-    <type>JobExecutor</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <specification_method>filename</specification_method>
-    <job_object_id/>
-    <job_name/>
-    <filename>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;..&#x2f;_invoke-transf.kjb</filename>
-    <directory_path/>
-    <group_size>1</group_size>
-    <group_field/>
-    <group_time/>
-          <parameters>       <variablemapping><variable>baseURI</variable><field>baseURI</field><input>Base URI of the Pentaho REST API.</input></variablemapping>
-       <variablemapping><variable>host</variable><field>host</field><input>Hostname or IP for the Pentaho REST API.</input></variablemapping>
-       <variablemapping><variable>port</variable><field>port</field><input>Port number for the Pentaho REST API.</input></variablemapping>
-       <variablemapping><variable>scheme</variable><field>scheme</field><input>Scheme &#x28;http&#x2f;https&#x29; for the Pentaho REST API.</input></variablemapping>
-       <variablemapping><variable>targetUser</variable><field>targetUser</field><input>Used for admin transformations, when the user does not have to be the current user.</input></variablemapping>
-       <variablemapping><variable>transformation</variable><field>transformation</field><input>Kettle transformation to be run.</input></variablemapping>
-    <inherit_all_vars>Y</inherit_all_vars>
-    </parameters>
-    <execution_result_target_step/>
-    <execution_time_field>ExecutionTime</execution_time_field>
-    <execution_result_field>ExecutionResult</execution_result_field>
-    <execution_errors_field>ExecutionNrErrors</execution_errors_field>
-    <execution_lines_read_field>ExecutionLinesRead</execution_lines_read_field>
-    <execution_lines_written_field>ExecutionLinesWritten</execution_lines_written_field>
-    <execution_lines_input_field>ExecutionLinesInput</execution_lines_input_field>
-    <execution_lines_output_field>ExecutionLinesOutput</execution_lines_output_field>
-    <execution_lines_rejected_field>ExecutionLinesRejected</execution_lines_rejected_field>
-    <execution_lines_updated_field>ExecutionLinesUpdated</execution_lines_updated_field>
-    <execution_lines_deleted_field>ExecutionLinesDeleted</execution_lines_deleted_field>
-    <execution_files_retrieved_field>ExecutionFilesRetrieved</execution_files_retrieved_field>
-    <execution_exit_status_field>ExecutionExitStatus</execution_exit_status_field>
-    <execution_log_text_field>ExecutionLogText</execution_log_text_field>
-    <execution_log_channelid_field>ExecutionLogChannelId</execution_log_channelid_field>
-    <result_rows_target_step>OUTPUT</result_rows_target_step>
-      <result_rows_field><name>user</name><type>String</type><length>-1</length><precision>-1</precision></result_rows_field>
-      <result_rows_field><name>role</name><type>String</type><length>-1</length><precision>-1</precision></result_rows_field>
-    <result_files_target_step/>
-    <result_files_file_name_field>FileName</result_files_file_name_field>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>639</xloc>
-      <yloc>96</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
   <step>
     <name>Get target user</name>
     <type>GetVariable</type>
@@ -166,8 +111,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>303</xloc>
-      <yloc>96</yloc>
+      <xloc>137</xloc>
+      <yloc>100</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -185,15 +130,15 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>807</xloc>
-      <yloc>96</yloc>
+      <xloc>423</xloc>
+      <yloc>100</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Read config</name>
-    <type>Mapping</type>
+    <name>List roles</name>
+    <type>SimpleMapping</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -205,61 +150,33 @@
     <specification_method>filename</specification_method>
     <trans_object_id/>
     <trans_name/>
-    <filename>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;..&#x2f;_read-config.ktr</filename>
+    <filename>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;_list-roles-for-user.ktr</filename>
     <directory_path/>
     <mappings>
       <input>
-      </input>
+    <mapping>    <input_step/>
+    <output_step/>
+    <main_path>Y</main_path>
+    <rename_on_output>Y</rename_on_output>
+    <description/>
+       <connector><parent>targetUser</parent><child>targetUser</child></connector>
+    </mapping>      </input>
       <output>
     <mapping>    <input_step/>
     <output_step/>
     <main_path>Y</main_path>
     <rename_on_output>N</rename_on_output>
     <description/>
+       <connector><parent>targetUser</parent><child/></connector>
+       <connector><parent>role</parent><child/></connector>
     </mapping>      </output>
-          <parameters>       <variablemapping><variable>Internal.Transformation.Filename.Directory</variable><input>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;..</input></variablemapping>
-    <inherit_all_vars>Y</inherit_all_vars>
+          <parameters>    <inherit_all_vars>Y</inherit_all_vars>
     </parameters>
     </mappings>
-    <allow_multiple_input>N</allow_multiple_input>
-    <allow_multiple_output>N</allow_multiple_output>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>135</xloc>
-      <yloc>96</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Specify .ktr for roles</name>
-    <type>GetVariable</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <name>transformation</name>
-        <variable>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;_list-roles-for-user.ktr</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>471</xloc>
-      <yloc>96</yloc>
+      <xloc>280</xloc>
+      <yloc>100</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

@@ -10,16 +10,6 @@
     <directory>&#x2f;</directory>
     <parameters>
         <parameter>
-            <name>excludeArtifacts</name>
-            <default_value>.&#x2a;&#x28;plugin&#x5b;-&#x5d;samples&#x7c;bi&#x5b;-&#x5d;developers&#x29;.&#x2a;</default_value>
-            <description/>
-        </parameter>
-        <parameter>
-            <name>includeArtifacts</name>
-            <default_value>.&#x2a;&#x28;&#x5b;wx&#x5d;cdf&#x7c;prpt&#x7c;xjpivot&#x29;</default_value>
-            <description>Only artifacts matching this regexp will be listed. The whole filename needs to match.</description>
-        </parameter>
-        <parameter>
             <name>targetRoles</name>
             <default_value/>
             <description>Roles of the target user.</description>
@@ -97,12 +87,12 @@
   </notepads>
   <order>
   <hop> <from>List All Files</from><to>Add fake ID</to><enabled>Y</enabled> </hop>
-  <hop> <from>Read config</from><to>List All Files</to><enabled>Y</enabled> </hop>
   <hop> <from>Discard fake ID</from><to>OUTPUT</to><enabled>Y</enabled> </hop>
   <hop> <from>Add fake ID</from><to>Join Rows</to><enabled>Y</enabled> </hop>
   <hop> <from>INPUT</from><to>Join Rows</to><enabled>Y</enabled> </hop>
   <hop> <from>Join Rows</from><to>Add visible flag</to><enabled>Y</enabled> </hop>
   <hop> <from>Add visible flag</from><to>Discard fake ID</to><enabled>Y</enabled> </hop>
+  <hop> <from>Read config</from><to>List All Files</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>Add fake ID</name>
@@ -128,38 +118,6 @@
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>317</xloc>
-      <yloc>101</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Discard fake ID</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>      <field>        <name>path</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>isVisible</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>reason</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>728</xloc>
       <yloc>101</yloc>
       <draw>Y</draw>
       </GUI>
@@ -208,6 +166,103 @@
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>591</xloc>
+      <yloc>101</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Discard fake ID</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>path</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>isVisible</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>reason</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>728</xloc>
+      <yloc>101</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>INPUT</name>
+    <type>MappingInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>targetUser</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>targetRoles</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+        <select_unspecified>N</select_unspecified>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>454</xloc>
+      <yloc>198</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Join Rows</name>
+    <type>JoinRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
+      <prefix>out</prefix>
+      <cache_size>500</cache_size>
+      <main/>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue/>
+ <function>&#x3d;</function>
+ <rightvalue/>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>454</xloc>
       <yloc>101</yloc>
       <draw>Y</draw>
       </GUI>
@@ -312,71 +367,6 @@
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>43</xloc>
-      <yloc>101</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>INPUT</name>
-    <type>MappingInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <name>targetUser</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>targetRoles</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-        <select_unspecified>N</select_unspecified>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>454</xloc>
-      <yloc>198</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Join Rows</name>
-    <type>JoinRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
-      <prefix>out</prefix>
-      <cache_size>500</cache_size>
-      <main/>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue/>
- <function>&#x3d;</function>
- <rightvalue/>
- </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>454</xloc>
       <yloc>101</yloc>
       <draw>Y</draw>
       </GUI>

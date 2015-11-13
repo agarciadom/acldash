@@ -41,8 +41,8 @@
      },
      {
       "name": "public",
-      "value": "false",
-      "type": "Boolean"
+      "type": "Boolean",
+      "value": "false"
      }
     ],
     "type": "ComponentsParameter",
@@ -74,8 +74,8 @@
      },
      {
       "name": "public",
-      "value": "false",
-      "type": "Boolean"
+      "type": "Boolean",
+      "value": "false"
      }
     ],
     "type": "ComponentsParameter",
@@ -107,8 +107,8 @@
      },
      {
       "name": "public",
-      "value": "false",
-      "type": "Boolean"
+      "type": "Boolean",
+      "value": "false"
      }
     ],
     "type": "ComponentsParameter",
@@ -276,8 +276,8 @@
      },
      {
       "name": "asynchronousMode",
-      "value": "true",
-      "type": "Boolean"
+      "type": "Boolean",
+      "value": "true"
      },
      {
       "name": "priority",
@@ -530,7 +530,7 @@
      {
       "name": "clickAction",
       "type": "JavaScript",
-      "value": "function f(ev) {\n\n    if (ev.category == 'path') {\n        var viewURL = artifactCatalog.getViewURL(ev.value);\n        window.open(viewURL);\n    }\n    else if (ev.category == 'resourceID') {\n        var editURL;\n        if (ev.value !== null) {\n            editURL = 'resourceform?resourceID=' + ev.value;\n        } else {\n            editURL = 'resourceform?url=' + ev.series;\n        }\n        window.open(editURL);\n    }\n    else if (ev.category == 'isVisible') {\n        artifactCatalog.runEndpoint('togglePermission', {\n        params: {\n            'fileName': ev.series,\n            'user': Dashboards.getParameterValue(\"targetUser\"),\n            'visible': ev.value,\n            'roles': Dashboards.getParameterValue(\"rolesUsers\"),\n        },\n          success: function (data) {\n            var statusHTML=\"\";\n\n            if(Dashboards.getParameterValue(\"targetUser\") == 'admin') {\n                statusHTML = Dashboards.i18nSupport.prop(\"error.cannot_revoke\");\n            } else {\n                if (data.resultset[0][0] !== '') {\n                    statusHTML = Dashboards.i18nSupport.prop(\"error.role_access\") + \": \"+ data.resultset[0];\n                }\n                else {\n                    statusHTML = Dashboards.i18nSupport.prop(\"success.permissions\");\n\n                    var dataTable = ev.target.closest(\"table\").dataTable();\n                    var oldValue = ev.target.text();\n                    var newValue = oldValue === \"true\" ? \"false\" : \"true\";\n                    dataTable.fnUpdate(newValue, ev.rowIdx, ev.colIdx);\n                }\n            }\n            var statusPanel = $(\"#statusPanel\");\n            statusPanel.stop(true, true);\n            statusPanel.text(statusHTML).show().fadeOut(3000);\n        }\n    });\n    \n    }\n} "
+      "value": "function f(ev) {\n\n    if (ev.category == 'path') {\n        var viewURL = artifactCatalog.getViewURL(ev.value);\n        window.open(viewURL);\n    }\n    else if (ev.category == 'resourceID') {\n        var editURL;\n        if (ev.value !== null) {\n            editURL = 'resourceform?resourceID=' + ev.value;\n        } else {\n            editURL = 'resourceform?url=' + ev.series;\n        }\n        window.open(editURL);\n    }\n    else if (ev.category == 'isVisible') {\n        artifactCatalog.runEndpoint('togglePermission', {\n        params: {\n            'fileName': ev.series,\n            'target': Dashboards.getParameterValue(\"targetUser\"),\n            'visible': ev.value,\n            'userRoles': Dashboards.getParameterValue(\"rolesUsers\"),\n        },\n          success: function (data) {\n            var statusHTML=\"\";\n\n            if(Dashboards.getParameterValue(\"targetUser\") == 'admin') {\n                statusHTML = Dashboards.i18nSupport.prop(\"error.cannot_revoke\");\n            } else {\n                if (data.resultset[0][0] !== '') {\n                    statusHTML = Dashboards.i18nSupport.prop(\"error.role_access\") + \": \"+ data.resultset[0];\n                }\n                else {\n                    statusHTML = Dashboards.i18nSupport.prop(\"success.permissions\");\n\n                    var dataTable = ev.target.closest(\"table\").dataTable();\n                    var oldValue = ev.target.text();\n                    var newValue = oldValue === \"true\" ? \"false\" : \"true\";\n                    dataTable.fnUpdate(newValue, ev.rowIdx, ev.colIdx);\n                    dataTable.fnUpdate(newValue === \"true\" ? \"user\" : \"\", ev.rowIdx, ev.colIdx + 1);\n                }\n            }\n            var statusPanel = $(\"#statusPanel\");\n            statusPanel.stop(true, true);\n            statusPanel.text(statusHTML).show().fadeOut(3000);\n        }\n    });\n    \n    }\n} "
      }
     ],
     "type": "ComponentsTable",
@@ -689,94 +689,94 @@
    {
     "id": "ACLDASH_CPKENDPOINTS",
     "name": "ACLDASH Endpoints",
-    "type": "Label",
-    "typeDesc": "<i>Group</i>",
     "parent": "UnIqEiD",
     "properties": [
      {
       "name": "Group",
-      "value": "ACLDASH Endpoints",
-      "type": "Label"
+      "type": "Label",
+      "value": "ACLDASH Endpoints"
      }
-    ]
+    ],
+    "type": "Label",
+    "typeDesc": "<i>Group</i>"
    },
    {
     "id": "60c46fd8-396f-2677-20ef-8b474b91449f",
-    "type": "Componentsacldash_listUsers_CPKENDPOINT",
-    "typeDesc": "listUsers Endpoint",
+    "meta": "CPK",
+    "meta_endpoint": "listUsers",
+    "meta_pluginId": "acldash",
     "parent": "ACLDASH_CPKENDPOINTS",
     "properties": [
      {
       "name": "name",
-      "value": "allUsersDS",
-      "type": "Id"
+      "type": "Id",
+      "value": "allUsersDS"
      },
      {
       "name": "stepName",
-      "value": "OUTPUT",
-      "type": "String"
+      "type": "String",
+      "value": "OUTPUT"
      },
      {
       "name": "kettleOutput",
-      "value": "Inferred",
-      "type": "kettleOutputCustom"
+      "type": "kettleOutputCustom",
+      "value": "Inferred"
      }
     ],
-    "meta": "CPK",
-    "meta_pluginId": "acldash",
-    "meta_endpoint": "listUsers"
+    "type": "Componentsacldash_listUsers_CPKENDPOINT",
+    "typeDesc": "listUsers Endpoint"
    },
    {
     "id": "fc29b287-e561-46cb-2c55-5e007032fb58",
-    "type": "Componentsacldash_listRolesForUser_CPKENDPOINT",
-    "typeDesc": "listRolesForUser Endpoint",
+    "meta": "CPK",
+    "meta_endpoint": "listRolesForUser",
+    "meta_pluginId": "acldash",
     "parent": "ACLDASH_CPKENDPOINTS",
     "properties": [
      {
       "name": "name",
-      "value": "rolesForUserDS",
-      "type": "Id"
+      "type": "Id",
+      "value": "rolesForUserDS"
      },
      {
       "name": "stepName",
-      "value": "OUTPUT",
-      "type": "String"
+      "type": "String",
+      "value": "OUTPUT"
      },
      {
       "name": "kettleOutput",
-      "value": "Inferred",
-      "type": "kettleOutputCustom"
+      "type": "kettleOutputCustom",
+      "value": "Inferred"
      }
     ],
-    "meta": "CPK",
-    "meta_pluginId": "acldash",
-    "meta_endpoint": "listRolesForUser"
+    "type": "Componentsacldash_listRolesForUser_CPKENDPOINT",
+    "typeDesc": "listRolesForUser Endpoint"
    },
    {
     "id": "629c120b-dddb-3b10-fde9-e05d1bd0111a",
-    "type": "Componentsacldash_listFilesForUser_CPKENDPOINT",
-    "typeDesc": "listFilesForUser Endpoint",
+    "meta": "CPK",
+    "meta_endpoint": "listFilesForUser",
+    "meta_pluginId": "acldash",
     "parent": "ACLDASH_CPKENDPOINTS",
     "properties": [
      {
       "name": "name",
-      "value": "filesForUserDS",
-      "type": "Id"
+      "type": "Id",
+      "value": "filesForUserDS"
      },
      {
       "name": "stepName",
-      "value": "OUTPUT",
-      "type": "String"
+      "type": "String",
+      "value": "OUTPUT"
      },
      {
       "name": "kettleOutput",
-      "value": "Inferred",
-      "type": "kettleOutputCustom"
+      "type": "kettleOutputCustom",
+      "value": "Inferred"
      }
     ],
-    "meta": "CPK",
-    "meta_pluginId": "acldash",
-    "meta_endpoint": "listFilesForUser"
+    "type": "Componentsacldash_listFilesForUser_CPKENDPOINT",
+    "typeDesc": "listFilesForUser Endpoint"
    }
   ]
  },

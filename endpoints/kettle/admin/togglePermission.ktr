@@ -12,22 +12,22 @@
         <parameter>
             <name>fileName</name>
             <default_value/>
-            <description>The name of the file that change of permissions</description>
+            <description>File to be changed</description>
         </parameter>
         <parameter>
-            <name>roles</name>
+            <name>target</name>
             <default_value/>
-            <description>The roles of users</description>
+            <description>Name of the user or role whose permission is to be toggled</description>
         </parameter>
         <parameter>
-            <name>user</name>
+            <name>userRoles</name>
             <default_value/>
-            <description>The user that change permission</description>
+            <description>Roles granted to the user &#x28;empty if the target is a role&#x29;</description>
         </parameter>
         <parameter>
             <name>visible</name>
             <default_value/>
-            <description>The value of field Visible&#x3f;</description>
+            <description>True if currently visible &#x28;will be switched to false&#x29;, false if currently not visible &#x28;will be switched to true&#x29;</description>
         </parameter>
     </parameters>
     <log>
@@ -90,29 +90,114 @@
   <created_date>2014&#x2f;04&#x2f;11 21&#x3a;51&#x3a;03.311</created_date>
   <modified_user>-</modified_user>
   <modified_date>2014&#x2f;04&#x2f;11 21&#x3a;51&#x3a;03.311</modified_date>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
+    <is_key_private>N</is_key_private>
   </info>
   <notepads>
+    <notepad>
+      <note>Toggling a .wcdf file also toggles the .cda and .cdfde files.</note>
+      <xloc>241</xloc>
+      <yloc>374</yloc>
+      <width>390</width>
+      <heigth>27</heigth>
+      <fontname>Ubuntu</fontname>
+      <fontsize>11</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
   <order>
-  <hop> <from>Get &#x2f;roles</from><to>Change permissions</to><enabled>Y</enabled> </hop>
-  <hop> <from>Read config</from><to>Get params</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get params</from><to>Prepare file name</to><enabled>Y</enabled> </hop>
-  <hop> <from>Put &#x2f;roles</from><to>Select values</to><enabled>Y</enabled> </hop>
   <hop> <from>Select values</from><to>OUTPUT</to><enabled>Y</enabled> </hop>
-  <hop> <from>Prepare file name</from><to>Escape URI</to><enabled>Y</enabled> </hop>
-  <hop> <from>Escape URI</from><to>Switch &#x2f; Case</to><enabled>Y</enabled> </hop>
-  <hop> <from>Switch &#x2f; Case</from><to>Get &#x2f;roles</to><enabled>Y</enabled> </hop>
-  <hop> <from>Switch &#x2f; Case</from><to>Escape URI 2</to><enabled>Y</enabled> </hop>
-  <hop> <from>Escape URI 2</from><to>Escape URI 3</to><enabled>Y</enabled> </hop>
-  <hop> <from>Escape URI 3</from><to>Get &#x2f;roles 2</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get &#x2f;roles 2</from><to>Get &#x2f;roles 3</to><enabled>Y</enabled> </hop>
-  <hop> <from>Get &#x2f;roles 3</from><to>Get &#x2f;roles</to><enabled>Y</enabled> </hop>
-  <hop> <from>Change permissions</from><to>Switch &#x2f; Case 2</to><enabled>Y</enabled> </hop>
-  <hop> <from>Switch &#x2f; Case 2</from><to>Put &#x2f;roles</to><enabled>Y</enabled> </hop>
-  <hop> <from>Switch &#x2f; Case 2</from><to>Put &#x2f;roles 2</to><enabled>Y</enabled> </hop>
-  <hop> <from>Put &#x2f;roles 2</from><to>Put &#x2f;roles 3</to><enabled>Y</enabled> </hop>
-  <hop> <from>Put &#x2f;roles 3</from><to>Put &#x2f;roles</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get params</from><to>Ends with .wcdf&#x3f;</to><enabled>Y</enabled> </hop>
+  <hop> <from>Ends with .wcdf&#x3f;</from><to>Dummy</to><enabled>Y</enabled> </hop>
+  <hop> <from>Dummy</from><to>.wcdf -&#x3e; .cda</to><enabled>Y</enabled> </hop>
+  <hop> <from>Dummy</from><to>.wcdf -&#x3e; .cdfde</to><enabled>Y</enabled> </hop>
+  <hop> <from>Dummy</from><to>Prepare query</to><enabled>Y</enabled> </hop>
+  <hop> <from>.wcdf -&#x3e; .cdfde</from><to>Prepare query</to><enabled>Y</enabled> </hop>
+  <hop> <from>.wcdf -&#x3e; .cda</from><to>Prepare query</to><enabled>Y</enabled> </hop>
+  <hop> <from>Ends with .wcdf&#x3f;</from><to>Prepare query</to><enabled>Y</enabled> </hop>
+  <hop> <from>Prepare query</from><to>Get ACL</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get ACL</from><to>Change permissions</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get ACL</from><to>Log ACL retrieved</to><enabled>Y</enabled> </hop>
+  <hop> <from>Change permissions</from><to>Put ACL</to><enabled>Y</enabled> </hop>
+  <hop> <from>Put ACL</from><to>Log ACL change</to><enabled>Y</enabled> </hop>
+  <hop> <from>Put ACL</from><to>Select values</to><enabled>Y</enabled> </hop>
+  <hop> <from>Read config</from><to>Get params</to><enabled>Y</enabled> </hop>
   </order>
+  <step>
+    <name>.wcdf -&#x3e; .cda</name>
+    <type>ReplaceString</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>fileName</in_stream_name>
+        <out_stream_name/>
+        <use_regex>yes</use_regex>
+        <replace_string>&#x5b;.&#x5d;wcdf&#x24;</replace_string>
+        <replace_by_string/>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string>fileName</replace_field_by_string>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>474</xloc>
+      <yloc>201</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>.wcdf -&#x3e; .cdfde</name>
+    <type>ReplaceString</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>fileName</in_stream_name>
+        <out_stream_name/>
+        <use_regex>yes</use_regex>
+        <replace_string>&#x5b;.&#x5d;wcdf&#x24;</replace_string>
+        <replace_by_string/>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string>fileName</replace_field_by_string>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>549</xloc>
+      <yloc>282</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
   <step>
     <name>Change permissions</name>
     <type>ScriptValueMod</type>
@@ -128,7 +213,7 @@
     <optimizationLevel>9</optimizationLevel>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>&#x2f;&#x2f;Script here&#xa;var rolesPermission&#x3d;&#x27;&#x27;&#x3b;&#xa;&#xa;&#x2f;&#x2f;For users with assign roles.&#xa;if&#x28;visible&#x3d;&#x3d;&#x22;true&#x22; &#x26;&#x26; roles&#x21;&#x3d;&#x27;&#x27;&#x29;&#x7b;&#xa;&#xa;	if&#x28;result.indexOf&#x28;user&#x29; &#x21;&#x3d; -1&#x29;&#x7b;&#xa;		var permission &#x3d; result.replace&#x28;&#x22;&#x3c;aces&#x3e;&#x3c;modifiable&#x3e;true&#x3c;&#x2f;modifiable&#x3e;&#x3c;permissions&#x3e;0&#x3c;&#x2f;permissions&#x3e;&#x3c;recipient&#x3e;&#x22;&#x2b;user&#x2b;&#x22;&#x3c;&#x2f;recipient&#x3e;&#x3c;recipientType&#x3e;0&#x3c;&#x2f;recipientType&#x3e;&#x3c;&#x2f;aces&#x3e;&#x22;,&#x22; &#x22;&#x29;&#x3b;&#xa;		if&#x28;wcdf &#x3d;&#x3d; &#x22;T&#x22;&#x29;&#x7b;&#xa;			var permission_2 &#x3d; result_2.replace&#x28;&#x22;&#x3c;aces&#x3e;&#x3c;modifiable&#x3e;true&#x3c;&#x2f;modifiable&#x3e;&#x3c;permissions&#x3e;0&#x3c;&#x2f;permissions&#x3e;&#x3c;recipient&#x3e;&#x22;&#x2b;user&#x2b;&#x22;&#x3c;&#x2f;recipient&#x3e;&#x3c;recipientType&#x3e;0&#x3c;&#x2f;recipientType&#x3e;&#x3c;&#x2f;aces&#x3e;&#x22;,&#x22; &#x22;&#x29;&#x3b;&#xa;			var permission_3 &#x3d; result_3.replace&#x28;&#x22;&#x3c;aces&#x3e;&#x3c;modifiable&#x3e;true&#x3c;&#x2f;modifiable&#x3e;&#x3c;permissions&#x3e;0&#x3c;&#x2f;permissions&#x3e;&#x3c;recipient&#x3e;&#x22;&#x2b;user&#x2b;&#x22;&#x3c;&#x2f;recipient&#x3e;&#x3c;recipientType&#x3e;0&#x3c;&#x2f;recipientType&#x3e;&#x3c;&#x2f;aces&#x3e;&#x22;,&#x22; &#x22;&#x29;&#x3b;&#xa;		&#x7d;	&#xa;	&#x7d;else&#x7b;&#xa;		var permission &#x3d; result&#x3b;&#xa;		var permission_2 &#x3d; result_2&#x3b;&#xa;		var permission_3 &#x3d; result_3&#x3b;&#xa;	&#x7d;&#xa;&#xa;    var nroles &#x3d; roles.split&#x28;&#x22;,&#x22;&#x29;&#x3b;	&#xa;	for&#x28;var i &#x3d; 0&#x3b; i&#x3c;nroles.length&#x3b; i&#x2b;&#x2b;&#x29;&#x7b;&#xa;		if&#x28;result.indexOf&#x28;nroles&#x5b;i&#x5d;&#x29;&#x21;&#x3d; -1&#x29;&#x7b;&#xa;			rolesPermission&#x2b;&#x3d; nroles&#x5b;i&#x5d;&#x3b;&#xa;		&#x7d;&#xa;	&#x7d;	&#xa;&#x7d;&#xa;&#xa;&#x2f;&#x2f;For roles.&#xa;else if&#x28;visible&#x3d;&#x3d;&#x22;true&#x22;&#x29;&#x7b;&#xa;	var permission &#x3d; result.replace&#x28;&#x22;&#x3c;aces&#x3e;&#x3c;modifiable&#x3e;true&#x3c;&#x2f;modifiable&#x3e;&#x3c;permissions&#x3e;0&#x3c;&#x2f;permissions&#x3e;&#x3c;recipient&#x3e;&#x22;&#x2b;user&#x2b;&#x22;&#x3c;&#x2f;recipient&#x3e;&#x3c;recipientType&#x3e;1&#x3c;&#x2f;recipientType&#x3e;&#x3c;&#x2f;aces&#x3e;&#x22;,&#x22; &#x22;&#x29;&#x3b;&#xa;	if&#x28;wcdf &#x3d;&#x3d; &#x22;T&#x22;&#x29;&#x7b;&#xa;		var permission_2 &#x3d; result_2.replace&#x28;&#x22;&#x3c;aces&#x3e;&#x3c;modifiable&#x3e;true&#x3c;&#x2f;modifiable&#x3e;&#x3c;permissions&#x3e;0&#x3c;&#x2f;permissions&#x3e;&#x3c;recipient&#x3e;&#x22;&#x2b;user&#x2b;&#x22;&#x3c;&#x2f;recipient&#x3e;&#x3c;recipientType&#x3e;1&#x3c;&#x2f;recipientType&#x3e;&#x3c;&#x2f;aces&#x3e;&#x22;,&#x22; &#x22;&#x29;&#x3b;&#xa;		var permission_3 &#x3d; result_3.replace&#x28;&#x22;&#x3c;aces&#x3e;&#x3c;modifiable&#x3e;true&#x3c;&#x2f;modifiable&#x3e;&#x3c;permissions&#x3e;0&#x3c;&#x2f;permissions&#x3e;&#x3c;recipient&#x3e;&#x22;&#x2b;user&#x2b;&#x22;&#x3c;&#x2f;recipient&#x3e;&#x3c;recipientType&#x3e;1&#x3c;&#x2f;recipientType&#x3e;&#x3c;&#x2f;aces&#x3e;&#x22;,&#x22; &#x22;&#x29;&#x3b;&#xa;	&#x7d;&#xa;&#x7d;&#xa;&#x2f;&#x2f;For users.&#xa;else if&#x28;visible&#x3d;&#x3d;&#x22;false&#x22; &#x26;&#x26; roles&#x21;&#x3d;&#x27;&#x27;&#x29;&#x7b;&#xa;	var permission &#x3d; result.replace&#x28;&#x22;&#x3c;repositoryFileAclDto&#x3e;&#x22;, &#x22;&#x3c;repositoryFileAclDto&#x3e; &#x3c;aces&#x3e;&#x3c;permissions&#x3e;0&#x3c;&#x2f;permissions&#x3e;&#x3c;recipient&#x3e;&#x22; &#x2b; user &#x2b; &#x22;&#x3c;&#x2f;recipient&#x3e;&#x3c;recipientType&#x3e;0&#x3c;&#x2f;recipientType&#x3e;&#x3c;&#x2f;aces&#x3e;&#x22;&#x29;&#x3b;&#xa;	if&#x28;wcdf &#x3d;&#x3d; &#x22;T&#x22;&#x29;&#x7b;&#xa;		var permission_2 &#x3d; result_2.replace&#x28;&#x22;&#x3c;repositoryFileAclDto&#x3e;&#x22;, &#x22;&#x3c;repositoryFileAclDto&#x3e; &#x3c;aces&#x3e;&#x3c;permissions&#x3e;0&#x3c;&#x2f;permissions&#x3e;&#x3c;recipient&#x3e;&#x22; &#x2b; user &#x2b; &#x22;&#x3c;&#x2f;recipient&#x3e;&#x3c;recipientType&#x3e;0&#x3c;&#x2f;recipientType&#x3e;&#x3c;&#x2f;aces&#x3e;&#x22;&#x29;&#x3b;&#xa;		var permission_3 &#x3d; result_3.replace&#x28;&#x22;&#x3c;repositoryFileAclDto&#x3e;&#x22;, &#x22;&#x3c;repositoryFileAclDto&#x3e; &#x3c;aces&#x3e;&#x3c;permissions&#x3e;0&#x3c;&#x2f;permissions&#x3e;&#x3c;recipient&#x3e;&#x22; &#x2b; user &#x2b; &#x22;&#x3c;&#x2f;recipient&#x3e;&#x3c;recipientType&#x3e;0&#x3c;&#x2f;recipientType&#x3e;&#x3c;&#x2f;aces&#x3e;&#x22;&#x29;&#x3b;&#xa;	&#x7d;&#xa;&#x7d;&#xa;&#x2f;&#x2f;For roles.&#xa;else if &#x28;visible&#x3d;&#x3d;&#x22;false&#x22;&#x29;&#x7b;&#xa;	var permission &#x3d; result.replace&#x28;&#x22;&#x3c;repositoryFileAclDto&#x3e;&#x22;, &#x22;&#x3c;repositoryFileAclDto&#x3e; &#x3c;aces&#x3e;&#x3c;permissions&#x3e;0&#x3c;&#x2f;permissions&#x3e;&#x3c;recipient&#x3e;&#x22; &#x2b; user &#x2b; &#x22;&#x3c;&#x2f;recipient&#x3e;&#x3c;recipientType&#x3e;1&#x3c;&#x2f;recipientType&#x3e;&#x3c;&#x2f;aces&#x3e;&#x22;&#x29;&#x3b;&#xa;	if&#x28;wcdf &#x3d;&#x3d; &#x22;T&#x22;&#x29;&#x7b;&#xa;		var permission_2 &#x3d; result_2.replace&#x28;&#x22;&#x3c;repositoryFileAclDto&#x3e;&#x22;, &#x22;&#x3c;repositoryFileAclDto&#x3e; &#x3c;aces&#x3e;&#x3c;permissions&#x3e;0&#x3c;&#x2f;permissions&#x3e;&#x3c;recipient&#x3e;&#x22; &#x2b; user &#x2b; &#x22;&#x3c;&#x2f;recipient&#x3e;&#x3c;recipientType&#x3e;1&#x3c;&#x2f;recipientType&#x3e;&#x3c;&#x2f;aces&#x3e;&#x22;&#x29;&#x3b;&#xa;		var permission_3 &#x3d; result_3.replace&#x28;&#x22;&#x3c;repositoryFileAclDto&#x3e;&#x22;, &#x22;&#x3c;repositoryFileAclDto&#x3e; &#x3c;aces&#x3e;&#x3c;permissions&#x3e;0&#x3c;&#x2f;permissions&#x3e;&#x3c;recipient&#x3e;&#x22; &#x2b; user &#x2b; &#x22;&#x3c;&#x2f;recipient&#x3e;&#x3c;recipientType&#x3e;1&#x3c;&#x2f;recipientType&#x3e;&#x3c;&#x2f;aces&#x3e;&#x22;&#x29;&#x3b;&#xa;	&#x7d;&#xa;&#x7d;</jsScript_script>
+        <jsScript_script>&#x2f;&#x2f; Roles that are already granting the permission to access the file&#xa;&#x2f;&#x2f; &#x28;toggling access on a user that has access already through a role&#xa;&#x2f;&#x2f; won&#x27;t do anything&#x29;.&#xa;var rolesPermission &#x3d; &#x27;&#x27;&#x3b;&#xa;&#xa;var USER_TYPE &#x3d; 0&#x3b;&#xa;var ROLE_TYPE &#x3d; 1&#x3b;&#xa;var disable_permission &#x3d; function &#x28;xml, target, recipientType&#x29; &#x7b;&#xa;  return xml.replace&#x28;&#x22;&#x3c;aces&#x3e;&#x22;&#xa;    &#x2b; &#x22;&#x3c;modifiable&#x3e;true&#x3c;&#x2f;modifiable&#x3e;&#x22;&#xa;    &#x2b; &#x22;&#x3c;permissions&#x3e;0&#x3c;&#x2f;permissions&#x3e;&#x22;&#xa;    &#x2b; &#x22;&#x3c;recipient&#x3e;&#x22; &#x2b; target &#x2b; &#x22;&#x3c;&#x2f;recipient&#x3e;&#x22;&#xa;    &#x2b; &#x22;&#x3c;recipientType&#x3e;&#x22; &#x2b; recipientType &#x2b; &#x22;&#x3c;&#x2f;recipientType&#x3e;&#x22;&#xa;    &#x2b; &#x22;&#x3c;&#x2f;aces&#x3e;&#x22;, &#x22; &#x22;&#x29;&#x3b;&#xa;&#x7d;&#x3b;&#xa;var enable_permission &#x3d; function &#x28;xml, target, recipientType&#x29; &#x7b;&#xa;  return xml.replace&#x28;&#x22;&#x3c;repositoryFileAclDto&#x3e;&#x22;,&#xa;    &#x22;&#x3c;repositoryFileAclDto&#x3e;&#x3c;aces&#x3e;&#x22;&#xa;    &#x2b; &#x22;&#x3c;permissions&#x3e;0&#x3c;&#x2f;permissions&#x3e;&#x22;&#xa;    &#x2b; &#x22;&#x3c;recipient&#x3e;&#x22; &#x2b; target &#x2b; &#x22;&#x3c;&#x2f;recipient&#x3e;&#x22;&#xa;    &#x2b; &#x22;&#x3c;recipientType&#x3e;&#x22; &#x2b; recipientType &#x2b; &#x22;&#x3c;&#x2f;recipientType&#x3e;&#x3c;&#x2f;aces&#x3e;&#x22;&#x29;&#x3b;&#xa;&#x7d;&#xa;&#xa;var type &#x3d; &#x28;userRoles &#x21;&#x3d; &#x27;&#x27;&#x29; &#x3f; USER_TYPE &#x3a; ROLE_TYPE&#x3b;&#xa;&#xa;if &#x28;visible &#x3d;&#x3d; &#x22;true&#x22;&#x29; &#x7b;&#xa;  var permission &#x3d; disable_permission&#x28;result, target, type&#x29;&#x3b;&#xa;&#xa;  if &#x28;type &#x3d;&#x3d; USER_TYPE&#x29; &#x7b;&#xa;    var nroles &#x3d; userRoles.split&#x28;&#x22;,&#x22;&#x29;&#x3b;	&#xa;	for &#x28;var i&#x3d;0&#x3b; i &#x3c; nroles.length&#x3b; i&#x2b;&#x2b;&#x29; &#x7b;&#xa;		if &#x28;result.indexOf&#x28;nroles&#x5b;i&#x5d;&#x29; &#x21;&#x3d; -1&#x29; &#x7b;&#xa;			rolesPermission &#x2b;&#x3d; nroles&#x5b;i&#x5d;&#x3b;&#xa;		&#x7d;&#xa;	&#x7d;&#xa;  &#x7d;&#xa;&#x7d; else &#x7b;&#xa;  var permission &#x3d; enable_permission&#x28;result, target, type&#x29;&#x3b;&#xa;&#x7d;&#xa;&#xa;&#x2f;&#x2f; Disable permission inheritance &#x28;otherwise, changes won&#x27;t be effective&#x29;&#xa;permission &#x3d; permission.replace&#x28;&#xa;  &#x22;&#x3c;entriesInheriting&#x3e;true&#x3c;&#x2f;entriesInheriting&#x3e;&#x22;,&#xa;  &#x22;&#x3c;entriesInheriting&#x3e;false&#x3c;&#x2f;entriesInheriting&#x3e;&#x22;&#x29;&#x3b;</jsScript_script>
       </jsScript>    </jsScripts>    <fields>      <field>        <name>permission</name>
         <rename>permission</rename>
         <type>String</type>
@@ -141,29 +226,36 @@
         <length>-1</length>
         <precision>-1</precision>
         <replace>N</replace>
-      </field>      <field>        <name>permission_2</name>
-        <rename>permission_2</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>      <field>        <name>permission_3</name>
-        <rename>permission_3</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
       </field>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>847</xloc>
-      <yloc>209</yloc>
+      <xloc>891</xloc>
+      <yloc>120</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Escape URI</name>
-    <type>Janino</type>
+    <name>Dummy</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>308</xloc>
+      <yloc>201</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Ends with .wcdf&#x3f;</name>
+    <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -172,198 +264,53 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-       <formula><field_name>escaped_uri</field_name>
-<formula_string>new java.net.URI&#x28;scheme, null, host, port.intValue&#x28;&#x29;, baseURI &#x2b; file, null, null&#x29;.toASCIIString&#x28;&#x29;</formula_string>
-<value_type>String</value_type>
-<value_length>-1</value_length>
-<value_precision>-1</value_precision>
-<replace_field/>
-</formula>
+<send_true_to>Dummy</send_true_to>
+<send_false_to>Prepare query</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>fileName</leftvalue>
+ <function>ENDS WITH</function>
+ <rightvalue/>
+ <value><name>constant</name><type>String</type><text>.wcdf</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
+    </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>470</xloc>
-      <yloc>207</yloc>
+      <xloc>310</xloc>
+      <yloc>120</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Escape URI 2</name>
-    <type>Janino</type>
+    <name>Get ACL</name>
+    <type>CallEndpointStep</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
            <schema_name/>
            </partitioning>
-       <formula><field_name>escaped_uri_2</field_name>
-<formula_string>new java.net.URI&#x28;scheme, null, host, port.intValue&#x28;&#x29;, baseURI &#x2b; file2, null, null&#x29;.toASCIIString&#x28;&#x29;</formula_string>
-<value_type>String</value_type>
-<value_length>-1</value_length>
-<value_precision>-1</value_precision>
-<replace_field/>
-</formula>
+    <serverUrl>http&#x3a;&#x2f;&#x2f;localhost&#x3a;8080&#x2f;pentaho</serverUrl>
+    <userName>admin</userName>
+    <password>password</password>
+    <isBypassingAuthentication>Y</isBypassingAuthentication>
+    <moduleName>module</moduleName>
+    <isModuleFromField>N</isModuleFromField>
+    <endpointPath>endpoint</endpointPath>
+    <httpMethod>methodRetrieve</httpMethod>
+    <isEndpointFromField>Y</isEndpointFromField>
+    <resultField>result</resultField>
+    <statusCodeField/>
+    <responseTimeField/>
+    <fields>
+    </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>587</xloc>
-      <yloc>327</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Escape URI 3</name>
-    <type>Janino</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-       <formula><field_name>escaped_uri_3</field_name>
-<formula_string>new java.net.URI&#x28;scheme, null, host, port.intValue&#x28;&#x29;, baseURI &#x2b; file3, null, null&#x29;.toASCIIString&#x28;&#x29;</formula_string>
-<value_type>String</value_type>
-<value_length>-1</value_length>
-<value_precision>-1</value_precision>
-<replace_field/>
-</formula>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>725</xloc>
-      <yloc>327</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Get &#x2f;roles</name>
-    <type>Rest</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <applicationType>XML</applicationType>
-    <method>GET</method>
-    <url/>
-    <urlInField>Y</urlInField>
-    <dynamicMethod>N</dynamicMethod>
-    <methodFieldName/>
-    <urlField>escaped_uri</urlField>
-    <bodyField/>
-    <httpLogin>&#x24;&#x7b;ARTIFACTCATALOG_RESTAPI_USER&#x7d;</httpLogin>
-    <httpPassword>&#x24;&#x7b;ARTIFACTCATALOG_RESTAPI_PWD&#x7d;</httpPassword>
-    <proxyHost/>
-    <proxyPort/>
-    <preemptive>N</preemptive>
-    <trustStoreFile/>
-    <trustStorePassword>Encrypted </trustStorePassword>
-    <headers>
-      </headers>
-    <parameters>
-      </parameters>
-    <result>
-      <name>result</name>
-      <code/>
-      <response_time/>
-      </result>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>714</xloc>
-      <yloc>209</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Get &#x2f;roles 2</name>
-    <type>Rest</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <applicationType>XML</applicationType>
-    <method>GET</method>
-    <url/>
-    <urlInField>Y</urlInField>
-    <dynamicMethod>N</dynamicMethod>
-    <methodFieldName/>
-    <urlField>escaped_uri_2</urlField>
-    <bodyField/>
-    <httpLogin>&#x24;&#x7b;ARTIFACTCATALOG_RESTAPI_USER&#x7d;</httpLogin>
-    <httpPassword>&#x24;&#x7b;ARTIFACTCATALOG_RESTAPI_PWD&#x7d;</httpPassword>
-    <proxyHost/>
-    <proxyPort/>
-    <preemptive>N</preemptive>
-    <trustStoreFile/>
-    <trustStorePassword>Encrypted </trustStorePassword>
-    <headers>
-      </headers>
-    <parameters>
-      </parameters>
-    <result>
-      <name>result_2</name>
-      <code/>
-      <response_time/>
-      </result>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>836</xloc>
-      <yloc>330</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Get &#x2f;roles 3</name>
-    <type>Rest</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <applicationType>XML</applicationType>
-    <method>GET</method>
-    <url/>
-    <urlInField>Y</urlInField>
-    <dynamicMethod>N</dynamicMethod>
-    <methodFieldName/>
-    <urlField>escaped_uri_3</urlField>
-    <bodyField/>
-    <httpLogin>&#x24;&#x7b;ARTIFACTCATALOG_RESTAPI_USER&#x7d;</httpLogin>
-    <httpPassword>&#x24;&#x7b;ARTIFACTCATALOG_RESTAPI_PWD&#x7d;</httpPassword>
-    <proxyHost/>
-    <proxyPort/>
-    <preemptive>N</preemptive>
-    <trustStoreFile/>
-    <trustStorePassword>Encrypted </trustStorePassword>
-    <headers>
-      </headers>
-    <parameters>
-      </parameters>
-    <result>
-      <name>result_3</name>
-      <code/>
-      <response_time/>
-      </result>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>958</xloc>
-      <yloc>330</yloc>
+      <xloc>731</xloc>
+      <yloc>120</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -405,8 +352,8 @@
         <trim_type>none</trim_type>
       </field>
       <field>
-        <name>user</name>
-        <variable>&#x24;&#x7b;user&#x7d;</variable>
+        <name>target</name>
+        <variable>&#x24;&#x7b;target&#x7d;</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -417,8 +364,8 @@
         <trim_type>none</trim_type>
       </field>
       <field>
-        <name>roles</name>
-        <variable>&#x24;&#x7b;roles&#x7d;</variable>
+        <name>userRoles</name>
+        <variable>&#x24;&#x7b;userRoles&#x7d;</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -431,8 +378,60 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>206</xloc>
-      <yloc>208</yloc>
+      <xloc>177</xloc>
+      <yloc>120</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Log ACL change</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <loglevel>log_level_detailed</loglevel>
+      <displayHeader>Y</displayHeader>
+      <limitRows>N</limitRows>
+      <limitRowsNumber>0</limitRowsNumber>
+      <logmessage/>
+    <fields>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1057</xloc>
+      <yloc>35</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Log ACL retrieved</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <loglevel>log_level_detailed</loglevel>
+      <displayHeader>Y</displayHeader>
+      <limitRows>N</limitRows>
+      <limitRowsNumber>0</limitRowsNumber>
+      <logmessage/>
+    <fields>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>730</xloc>
+      <yloc>204</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -450,14 +449,14 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1439</xloc>
-      <yloc>207</yloc>
+      <xloc>1057</xloc>
+      <yloc>282</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Prepare file name</name>
+    <name>Prepare query</name>
     <type>ScriptValueMod</type>
     <description/>
     <distribute>Y</distribute>
@@ -471,41 +470,65 @@
     <optimizationLevel>9</optimizationLevel>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>var file &#x3d; fileName.replace&#x28;&#x2f;&#x5c;&#x2f;&#x2f;g,&#x27;&#x3a;&#x27;&#x29;&#x3b;&#xa;&#xa;var file &#x3d; &#x22;&#x2f;repo&#x2f;files&#x2f;&#x22; &#x2b; file &#x2b; &#x22;&#x2f;acl&#x22;&#x3b;&#xa;&#xa;if&#x28;fileName.indexOf&#x28;&#x22;.wcdf&#x22;&#x29; &#x21;&#x3d; -1&#x29;&#x7b;&#xa;	var wcdf &#x3d; &#x22;T&#x22;&#x3b;&#xa;	var file2 &#x3d; file.replace&#x28;&#x27;.wcdf&#x27;,&#x27;.cda&#x27;&#x29;&#x3b;&#xa;	var file3 &#x3d; file.replace&#x28;&#x27;.wcdf&#x27;,&#x27;.cdfde&#x27;&#x29;&#x3b;&#xa;&#x7d;&#xa;else&#x7b;&#xa;	var wcdf &#x3d; &#x22;F&#x22;&#x3b;&#xa;&#x7d;</jsScript_script>
-      </jsScript>    </jsScripts>    <fields>      <field>        <name>file</name>
-        <rename>file</rename>
+        <jsScript_script>var jcrPath &#x3d; fileName.replace&#x28;&#x2f;&#x5c;&#x2f;&#x2f;g,&#x27;&#x3a;&#x27;&#x29;&#x3b;&#xa;var endpoint &#x3d; &#x22;&#x2f;repo&#x2f;files&#x2f;&#x22; &#x2b; encodeURIComponent&#x28;jcrPath&#x29; &#x2b; &#x22;&#x2f;acl&#x22;&#x3b;&#xa;var url &#x3d; baseURI.replace&#x28;&#x2f;&#x5c;&#x2f;&#x24;&#x2f;, &#x22;&#x22;&#x29; &#x2b; endpoint&#x3b;&#xa;&#xa;var methodRetrieve &#x3d; &#x27;GET&#x27;&#x3b;&#xa;var module &#x3d; &#x27;platform&#x27;&#x3b;&#xa;</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>      <field>        <name>url</name>
+        <rename>url</rename>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
         <replace>N</replace>
-      </field>      <field>        <name>wcdf</name>
-        <rename>wcdf</rename>
+      </field>      <field>        <name>endpoint</name>
+        <rename>endpoint</rename>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
         <replace>N</replace>
-      </field>      <field>        <name>file2</name>
-        <rename>file2</rename>
+      </field>      <field>        <name>methodRetrieve</name>
+        <rename>methodRetrieve</rename>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
         <replace>N</replace>
-      </field>      <field>        <name>file3</name>
-        <rename>file3</rename>
+      </field>      <field>        <name>module</name>
+        <rename>module</rename>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
         <replace>N</replace>
       </field>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>336</xloc>
-      <yloc>208</yloc>
+      <xloc>549</xloc>
+      <yloc>120</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Put &#x2f;roles</name>
+    <name>Select values</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>rolesPermission</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1057</xloc>
+      <yloc>201</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Put ACL</name>
     <type>Rest</type>
     <description/>
     <distribute>N</distribute>
@@ -521,7 +544,7 @@
     <urlInField>Y</urlInField>
     <dynamicMethod>N</dynamicMethod>
     <methodFieldName/>
-    <urlField>escaped_uri</urlField>
+    <urlField>url</urlField>
     <bodyField>permission</bodyField>
     <httpLogin>&#x24;&#x7b;ARTIFACTCATALOG_RESTAPI_USER&#x7d;</httpLogin>
     <httpPassword>&#x24;&#x7b;ARTIFACTCATALOG_RESTAPI_PWD&#x7d;</httpPassword>
@@ -541,94 +564,8 @@
       </result>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1096</xloc>
-      <yloc>207</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Put &#x2f;roles 2</name>
-    <type>Rest</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <applicationType>XML</applicationType>
-    <method>PUT</method>
-    <url/>
-    <urlInField>Y</urlInField>
-    <dynamicMethod>N</dynamicMethod>
-    <methodFieldName/>
-    <urlField>escaped_uri_2</urlField>
-    <bodyField>permission_2</bodyField>
-    <httpLogin>&#x24;&#x7b;ARTIFACTCATALOG_RESTAPI_USER&#x7d;</httpLogin>
-    <httpPassword>&#x24;&#x7b;ARTIFACTCATALOG_RESTAPI_PWD&#x7d;</httpPassword>
-    <proxyHost/>
-    <proxyPort/>
-    <preemptive>N</preemptive>
-    <trustStoreFile/>
-    <trustStorePassword>Encrypted </trustStorePassword>
-    <headers>
-      </headers>
-    <parameters>
-      </parameters>
-    <result>
-      <name>result_2</name>
-      <code/>
-      <response_time/>
-      </result>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>962</xloc>
-      <yloc>79</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Put &#x2f;roles 3</name>
-    <type>Rest</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <applicationType>XML</applicationType>
-    <method>PUT</method>
-    <url/>
-    <urlInField>Y</urlInField>
-    <dynamicMethod>N</dynamicMethod>
-    <methodFieldName/>
-    <urlField>escaped_uri_3</urlField>
-    <bodyField>permission_3</bodyField>
-    <httpLogin>&#x24;&#x7b;ARTIFACTCATALOG_RESTAPI_USER&#x7d;</httpLogin>
-    <httpPassword>&#x24;&#x7b;ARTIFACTCATALOG_RESTAPI_PWD&#x7d;</httpPassword>
-    <proxyHost/>
-    <proxyPort/>
-    <preemptive>N</preemptive>
-    <trustStoreFile/>
-    <trustStorePassword>Encrypted </trustStorePassword>
-    <headers>
-      </headers>
-    <parameters>
-      </parameters>
-    <result>
-      <name>result_3</name>
-      <code/>
-      <response_time/>
-      </result>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1093</xloc>
-      <yloc>79</yloc>
+      <xloc>1057</xloc>
+      <yloc>120</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -667,88 +604,8 @@
     <allow_multiple_output>N</allow_multiple_output>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>71</xloc>
-      <yloc>208</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Select values</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>      <field>        <name>rolesPermission</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1282</xloc>
-      <yloc>207</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Switch &#x2f; Case</name>
-    <type>SwitchCase</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<fieldname>wcdf</fieldname>
-<use_contains>N</use_contains>
-<case_value_type>String</case_value_type>
-<case_value_format/>
-<case_value_decimal/>
-<case_value_group/>
-<default_target_step>Get &#x2f;roles</default_target_step>
-<cases><case><value>T</value>
-<target_step>Escape URI 2</target_step>
-</case></cases>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>587</xloc>
-      <yloc>210</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Switch &#x2f; Case 2</name>
-    <type>SwitchCase</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<fieldname>wcdf</fieldname>
-<use_contains>N</use_contains>
-<case_value_type>String</case_value_type>
-<case_value_format/>
-<case_value_decimal/>
-<case_value_group/>
-<default_target_step>Put &#x2f;roles</default_target_step>
-<cases><case><value>T</value>
-<target_step>Put &#x2f;roles 2</target_step>
-</case></cases>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>964</xloc>
-      <yloc>207</yloc>
+      <xloc>55</xloc>
+      <yloc>120</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

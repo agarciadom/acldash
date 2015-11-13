@@ -17,7 +17,7 @@ if (!String.prototype.format) {
 
 var artifactCatalog = {};
 (function(myself){
-    myself.pluginId = 'artifactCatalog';
+    myself.pluginId = 'acldash';
 
     myself.pentahoPrefix = function() {
         return '/pentaho';

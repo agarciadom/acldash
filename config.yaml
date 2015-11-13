@@ -1,3 +1,16 @@
+# NOTE: if you want permission toggling to work, you need to add the
+# username and password of an Administrator to your
+# ~/.kettle/kettle.properties file, which should be only readable by
+# the user running Pentaho.
+#
+# For a stock Pentaho CE install, use this lines and uncomment them:
+#
+# ARTIFACTCATALOG_RESTAPI_USER=Admin
+# ARTIFACTCATALOG_RESTAPI_PWD=password
+
+# Location of the Pentaho REST API (needed for permission toggling)
+baseURI: "http://localhost:8080/pentaho/api"
+
 # Regexps for filtering the artifacts to list in the admin dashboards
 # (whole filename has to match)
 includeArtifacts: ".*([wx]cdf|prpt|xjpivot|saiku|pdf|xlsx?)"

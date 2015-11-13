@@ -409,7 +409,7 @@
      {
       "name": "clickAction",
       "type": "JavaScript",
-      "value": "function f(ev) {\n    var cannot_revoke = Dashboards.i18nSupport.prop(\"error.cannot_revoke\"), \n        success = Dashboards.i18nSupport.prop(\"success.permissions\");\n    \n    if (ev.category == 'path') {\n        var viewURL = artifactCatalog.getViewURL(ev.value);\n        window.open(viewURL);\n    }\n     else if (ev.category == 'resourceID') {\n        var editURL;\n        if (ev.value !== null) {\n            editURL = 'resourceform?resourceID=' + ev.value;\n        } else {\n            editURL = 'resourceform?url=' + ev.series;\n        }\n        window.open(editURL);\n    }\n    else if (ev.category == 'isVisible') {\n        artifactCatalog.runEndpoint('togglePermission', {\n            params: {\n                'fileName': ev.series,\n                'user': Dashboards.getParameterValue(\"targetRole\"),\n                'visible': ev.value,\n            },\n            success: function (data) {\n                var statusHTML = '';\n            \n                if (Dashboards.getParameterValue(\"targetRole\") == 'Administrator') {\n                    statusHTML = cannot_revoke;\n                } else {\n                    statusHTML = success;\n\n                    var dataTable = ev.target.closest(\"table\").dataTable();\n                    var oldValue = ev.target.text();\n                    var newValue = oldValue === \"true\" ? \"false\" : \"true\";\n                    dataTable.fnUpdate(newValue, ev.rowIdx, ev.colIdx);\n                }\n\n                var statusPanel = $(\"#statusPanel\");\n                statusPanel.stop(true, true);\n                statusPanel.text(statusHTML).show().fadeOut(3000);\n            }      \n        });\n    }\n\n} "
+      "value": "function f(ev) {\n    var cannot_revoke = Dashboards.i18nSupport.prop(\"error.cannot_revoke\"), \n        success = Dashboards.i18nSupport.prop(\"success.permissions\");\n    \n    if (ev.category == 'path') {\n        var viewURL = artifactCatalog.getViewURL(ev.value);\n        window.open(viewURL);\n    }\n     else if (ev.category == 'resourceID') {\n        var editURL;\n        if (ev.value !== null) {\n            editURL = 'resourceform?resourceID=' + ev.value;\n        } else {\n            editURL = 'resourceform?url=' + ev.series;\n        }\n        window.open(editURL);\n    }\n    else if (ev.category == 'isVisible') {\n        artifactCatalog.runEndpoint('togglePermission', {\n            params: {\n                'fileName': ev.series,\n                'target': Dashboards.getParameterValue(\"targetRole\"),\n                'visible': ev.value,\n            },\n            success: function (data) {\n                var statusHTML = '';\n            \n                if (Dashboards.getParameterValue(\"targetRole\") == 'Administrator') {\n                    statusHTML = cannot_revoke;\n                } else {\n                    statusHTML = success;\n\n                    var dataTable = ev.target.closest(\"table\").dataTable();\n                    var oldValue = ev.target.text();\n                    var newValue = oldValue === \"true\" ? \"false\" : \"true\";\n                    dataTable.fnUpdate(newValue, ev.rowIdx, ev.colIdx);\n                }\n\n                var statusPanel = $(\"#statusPanel\");\n                statusPanel.stop(true, true);\n                statusPanel.text(statusHTML).show().fadeOut(3000);\n            }      \n        });\n    }\n\n} "
      }
     ],
     "type": "ComponentsTable",
@@ -525,7 +525,7 @@
      {
       "name": "oLanguage",
       "type": "JavaScript",
-      "value": "artifactCatalog.i18n() "
+      "value": ""
      },
      {
       "name": "language",
@@ -836,29 +836,29 @@
    },
    {
     "id": "caceb099-ef89-9373-0f50-9cf159c45565",
-    "type": "Componentsacldash_listRoles_CPKENDPOINT",
-    "typeDesc": "listRoles Endpoint",
+    "meta": "CPK",
+    "meta_endpoint": "listRoles",
+    "meta_pluginId": "acldash",
     "parent": "ACLDASH_CPKENDPOINTS",
     "properties": [
      {
       "name": "name",
-      "value": "allRolesDS",
-      "type": "Id"
+      "type": "Id",
+      "value": "allRolesDS"
      },
      {
       "name": "stepName",
-      "value": "OUTPUT",
-      "type": "String"
+      "type": "String",
+      "value": "OUTPUT"
      },
      {
       "name": "kettleOutput",
-      "value": "Inferred",
-      "type": "kettleOutputCustom"
+      "type": "kettleOutputCustom",
+      "value": "Inferred"
      }
     ],
-    "meta": "CPK",
-    "meta_pluginId": "acldash",
-    "meta_endpoint": "listRoles"
+    "type": "Componentsacldash_listRoles_CPKENDPOINT",
+    "typeDesc": "listRoles Endpoint"
    }
   ]
  },

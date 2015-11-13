@@ -212,7 +212,7 @@
      {
       "name": "clickAction",
       "type": "JavaScript",
-      "value": ""
+      "value": "function f(ev) {\n    window.open(artifactCatalog.getEndpointURL(\"roleinformation\") + \"?role=\" + ev.value);\n} "
      }
     ],
     "type": "ComponentsTable",
@@ -415,7 +415,7 @@
      {
       "name": "clickAction",
       "type": "JavaScript",
-      "value": ""
+      "value": "function f(ev) {\n    window.open(artifactCatalog.getEndpointURL(\"userinformation\") + \"?user=\" + ev.value);\n} "
      }
     ],
     "type": "ComponentsTable",
@@ -466,36 +466,82 @@
     "typeDesc": "listRoles Endpoint"
    },
    {
-    "id": "779fe1bf-5afa-b187-4b09-e4b5d86a3877",
-    "type": "Componentsacldash_listusers_CPKENDPOINT",
-    "typeDesc": "listusers Endpoint",
+    "id": "7bf69b6d-b8f0-41e2-4dfd-c2d65168a04a",
+    "meta": "CPK",
+    "meta_endpoint": "listUsers",
+    "meta_pluginId": "acldash",
     "parent": "ACLDASH_CPKENDPOINTS",
     "properties": [
      {
       "name": "name",
-      "value": "dsUsers",
-      "type": "Id"
+      "type": "Id",
+      "value": "dsUsers"
      },
      {
       "name": "stepName",
-      "value": "OUTPUT",
-      "type": "String"
+      "type": "String",
+      "value": "OUTPUT"
      },
      {
       "name": "kettleOutput",
-      "value": "Inferred",
-      "type": "kettleOutputCustom"
+      "type": "kettleOutputCustom",
+      "value": "Inferred"
      }
     ],
-    "meta": "CPK",
-    "meta_pluginId": "acldash",
-    "meta_endpoint": "listusers"
+    "type": "Componentsacldash_listUsers_CPKENDPOINT",
+    "typeDesc": "listUsers Endpoint"
    }
   ]
  },
  "filename": "/system/acldash/dashboards/admin/main.cdfde",
  "layout": {
   "rows": [
+   {
+    "id": "a41b100b-13e0-ceaa-4e83-c725c57fcd5b",
+    "parent": "UnIqEiD",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "projectCSS"
+     },
+     {
+      "name": "resourceFile",
+      "type": "ResourceFile",
+      "value": "/pentaho/api/repos/acldash/static/custom/css/acldash.css"
+     },
+     {
+      "name": "resourceType",
+      "type": "Label",
+      "value": "Css"
+     }
+    ],
+    "type": "LayoutResourceFile",
+    "typeDesc": "Resource"
+   },
+   {
+    "id": "7a51f0e6-887a-42b2-7a08-b1c97bf01209",
+    "parent": "UnIqEiD",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "projectJS"
+     },
+     {
+      "name": "resourceFile",
+      "type": "ResourceFile",
+      "value": "/pentaho/api/repos/acldash/static/custom/js/acldash.js"
+     },
+     {
+      "name": "resourceType",
+      "type": "Label",
+      "value": "Javascript"
+     }
+    ],
+    "type": "LayoutResourceFile",
+    "typeDesc": "Resource"
+   },
    {
     "id": "e12f9bf3-27f1-beb1-0a68-a5b0facd091b",
     "parent": "UnIqEiD",

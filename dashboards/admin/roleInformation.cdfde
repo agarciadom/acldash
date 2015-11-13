@@ -142,7 +142,7 @@
      {
       "name": "priority",
       "type": "Integer",
-      "value": 5
+      "value": "5"
      },
      {
       "name": "refreshPeriod",
@@ -723,12 +723,12 @@
      {
       "name": "expression",
       "type": "JavaScript",
-      "value": "function f() {\n    // role\n    var role = Dashboards.getQueryParameter(\"role\");\n    Dashboards.fireChange(\"targetRole\", role);\n    \n}"
+      "value": "function f() {\n    // role\n    debugger;\n    var role = Dashboards.getQueryParameter(\"role\");\n    Dashboards.fireChange(\"targetRole\", role);\n    \n} "
      },
      {
       "name": "priority",
       "type": "Integer",
-      "value": 5
+      "value": "4"
      },
      {
       "name": "refreshPeriod",

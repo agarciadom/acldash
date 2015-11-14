@@ -614,24 +614,158 @@
   "rows": [
    {
     "id": "17058178-77e5-4604-4eb4-1c9bc24145cc",
-    "type": "LayoutResourceCode",
-    "typeDesc": "Resource",
     "parent": "UnIqEiD",
     "properties": [
      {
       "name": "name",
-      "value": "extraCSS",
-      "type": "Id"
+      "type": "Id",
+      "value": "extraCSS"
      },
      {
       "name": "resourceCode",
-      "value": ".equalHeightTableWrapper {\n    min-height: 230px;\n}\n\n#bodyUsersTable thead, #bodyRolesTable thead {\n    display: none;\n}\n\ntd.column0 {\n    text-decoration: underline;\n    color: blue;\n    cursor: pointer;    \n} ",
-      "type": "Resource"
+      "type": "Resource",
+      "value": ".equalHeightTableWrapper {\n    min-height: 230px;\n}\n\n#bodyUsersTable thead, #bodyRolesTable thead {\n    display: none;\n}\n\ntd.column0 {\n    text-decoration: underline;\n    color: blue;\n    cursor: pointer;    \n} "
      },
      {
       "name": "resourceType",
-      "value": "Css",
-      "type": "Label"
+      "type": "Label",
+      "value": "Css"
+     }
+    ],
+    "type": "LayoutResourceCode",
+    "typeDesc": "Resource"
+   },
+   {
+    "id": "fc9850e2-d29a-b06c-9058-4659b7f4d632",
+    "type": "LayoutRow",
+    "typeDesc": "Row",
+    "parent": "UnIqEiD",
+    "properties": [
+     {
+      "name": "name",
+      "value": "",
+      "type": "Id"
+     },
+     {
+      "name": "height",
+      "value": "",
+      "type": "Integer"
+     },
+     {
+      "name": "backgroundColor",
+      "value": "",
+      "type": "Color"
+     },
+     {
+      "name": "roundCorners",
+      "value": "",
+      "type": "RoundCorners"
+     },
+     {
+      "name": "textAlign",
+      "value": "",
+      "type": "TextAlign"
+     },
+     {
+      "name": "cssClass",
+      "value": "",
+      "type": "String"
+     }
+    ]
+   },
+   {
+    "id": "827aaaff-5777-4e2d-fd66-db55c23c1a1f",
+    "type": "LayoutBootstrapColumn",
+    "typeDesc": "Column",
+    "parent": "fc9850e2-d29a-b06c-9058-4659b7f4d632",
+    "properties": [
+     {
+      "name": "name",
+      "value": "",
+      "type": "Id"
+     },
+     {
+      "name": "bootstrapExtraSmall",
+      "value": "12",
+      "type": "String"
+     },
+     {
+      "name": "bootstrapSmall",
+      "value": "",
+      "type": "String"
+     },
+     {
+      "name": "bootstrapMedium",
+      "value": "",
+      "type": "String"
+     },
+     {
+      "name": "bootstrapLarge",
+      "value": "",
+      "type": "String"
+     },
+     {
+      "name": "bootstrapCssClass",
+      "value": "",
+      "type": "String"
+     },
+     {
+      "name": "height",
+      "value": "",
+      "type": "Integer"
+     },
+     {
+      "name": "backgroundColor",
+      "value": "",
+      "type": "Color"
+     },
+     {
+      "name": "roundCorners",
+      "value": "",
+      "type": "RoundCorners"
+     },
+     {
+      "name": "textAlign",
+      "value": "",
+      "type": "TextAlign"
+     },
+     {
+      "name": "cssClass",
+      "value": "",
+      "type": "String"
+     }
+    ]
+   },
+   {
+    "id": "913b9e27-c6b6-51b6-16df-e44d2d60fe0f",
+    "type": "LayoutHtml",
+    "typeDesc": "Html",
+    "parent": "827aaaff-5777-4e2d-fd66-db55c23c1a1f",
+    "properties": [
+     {
+      "name": "name",
+      "value": "",
+      "type": "Id"
+     },
+     {
+      "name": "html",
+      "value": "<p>Welcome! Click on the user or role you're interested in.</p> ",
+      "type": "Html"
+     },
+     {
+      "name": "fontSize",
+      "value": "",
+      "type": "Integer"
+     },
+     {
+      "name": "color",
+      "value": "",
+      "type": "Color"
+     },
+     {
+      "name": "cssClass",
+      "value": "",
+      "type": "String"
      }
     ]
    },

@@ -472,7 +472,7 @@
      {
       "name": "buttonStyle",
       "type": "TableStyle",
-      "value": "themeroller"
+      "value": "bootstrap"
      },
      {
       "name": "htmlObject",
@@ -723,7 +723,7 @@
      {
       "name": "expression",
       "type": "JavaScript",
-      "value": "function f() {\n    // role\n    debugger;\n    var role = Dashboards.getQueryParameter(\"role\");\n    Dashboards.fireChange(\"targetRole\", role);\n    \n} "
+      "value": "function f() {\n    var role = Dashboards.getQueryParameter(\"role\");\n    Dashboards.fireChange(\"targetRole\", role);\n} "
      },
      {
       "name": "priority",
@@ -877,7 +877,7 @@
      {
       "name": "resourceCode",
       "type": "Resource",
-      "value": "#filesPanelTable tbody .column0, #filesPanelTable tbody .column2, #filesPanelTable tbody .column1, #sectionsPanelTable tbody .column2 {\n    text-decoration: underline;\n    color: blue;\n    cursor: pointer;\n} "
+      "value": "#filesPanelTable tbody .column0, #filesPanelTable tbody .column2, #filesPanelTable tbody .column1, #usersPanelTable tbody .column0 {\n    text-decoration: underline;\n    color: blue;\n    cursor: pointer;\n} "
      },
      {
       "name": "resourceType",
@@ -889,42 +889,138 @@
     "typeDesc": "Resource"
    },
    {
-    "id": "cda9bf5f-0f51-13db-68ac-616cef3e73be",
+    "id": "be87cd87-6e6c-32f3-74cb-bf3e40c5e743",
+    "type": "LayoutRow",
+    "typeDesc": "Row",
     "parent": "UnIqEiD",
     "properties": [
      {
       "name": "name",
-      "type": "Id",
-      "value": "Spacer"
+      "value": "",
+      "type": "Id"
      },
      {
       "name": "height",
-      "type": "Integer",
-      "value": "5"
+      "value": "",
+      "type": "Integer"
      },
      {
       "name": "backgroundColor",
-      "type": "Color",
-      "value": ""
+      "value": "",
+      "type": "Color"
      },
      {
       "name": "roundCorners",
-      "type": "RoundCorners",
-      "value": ""
+      "value": "",
+      "type": "RoundCorners"
      },
      {
       "name": "textAlign",
-      "type": "TextAlign",
-      "value": ""
+      "value": "",
+      "type": "TextAlign"
      },
      {
       "name": "cssClass",
-      "type": "String",
-      "value": ""
+      "value": "",
+      "type": "String"
      }
-    ],
-    "type": "LayoutRow",
-    "typeDesc": "Row"
+    ]
+   },
+   {
+    "id": "3eaa73e5-7ba3-d1ec-dd6b-9fbabad6f7e5",
+    "type": "LayoutBootstrapColumn",
+    "typeDesc": "Column",
+    "parent": "be87cd87-6e6c-32f3-74cb-bf3e40c5e743",
+    "properties": [
+     {
+      "name": "name",
+      "value": "",
+      "type": "Id"
+     },
+     {
+      "name": "bootstrapExtraSmall",
+      "value": "12",
+      "type": "String"
+     },
+     {
+      "name": "bootstrapSmall",
+      "value": "",
+      "type": "String"
+     },
+     {
+      "name": "bootstrapMedium",
+      "value": "",
+      "type": "String"
+     },
+     {
+      "name": "bootstrapLarge",
+      "value": "",
+      "type": "String"
+     },
+     {
+      "name": "bootstrapCssClass",
+      "value": "",
+      "type": "String"
+     },
+     {
+      "name": "height",
+      "value": "",
+      "type": "Integer"
+     },
+     {
+      "name": "backgroundColor",
+      "value": "",
+      "type": "Color"
+     },
+     {
+      "name": "roundCorners",
+      "value": "",
+      "type": "RoundCorners"
+     },
+     {
+      "name": "textAlign",
+      "value": "",
+      "type": "TextAlign"
+     },
+     {
+      "name": "cssClass",
+      "value": "",
+      "type": "String"
+     }
+    ]
+   },
+   {
+    "id": "3692a320-e6c3-a6aa-5888-684a24274f73",
+    "type": "LayoutHtml",
+    "typeDesc": "Html",
+    "parent": "3eaa73e5-7ba3-d1ec-dd6b-9fbabad6f7e5",
+    "properties": [
+     {
+      "name": "name",
+      "value": "",
+      "type": "Id"
+     },
+     {
+      "name": "html",
+      "value": "<p>\n  On the left, you can see the users that have this role.\n  On the right, you can see which files they can access: toggle visibility by\n  clicking on the \"Visible?\" column.\n</p>\n<p>Please review your\n  <code>pentaho-solutions/system/acldash/config.yaml</code> file for instructions\n  on how to enable visibility toggling.</p> ",
+      "type": "Html"
+     },
+     {
+      "name": "fontSize",
+      "value": "",
+      "type": "Integer"
+     },
+     {
+      "name": "color",
+      "value": "",
+      "type": "Color"
+     },
+     {
+      "name": "cssClass",
+      "value": "",
+      "type": "String"
+     }
+    ]
    },
    {
     "id": "9b5e4665-60dd-d123-d49a-7cb9072a0540",

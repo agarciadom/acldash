@@ -593,7 +593,7 @@
      {
       "name": "buttonStyle",
       "type": "TableStyle",
-      "value": "themeroller"
+      "value": "bootstrap"
      },
      {
       "name": "htmlObject",
@@ -807,42 +807,138 @@
     "typeDesc": "Resource"
    },
    {
-    "id": "cda9bf5f-0f51-13db-68ac-616cef3e73be",
+    "id": "63775fbb-5fb7-44f8-8ce5-3b5fa395185b",
+    "type": "LayoutRow",
+    "typeDesc": "Row",
     "parent": "UnIqEiD",
     "properties": [
      {
       "name": "name",
-      "type": "Id",
-      "value": "Spacer"
+      "value": "",
+      "type": "Id"
      },
      {
       "name": "height",
-      "type": "Integer",
-      "value": "5"
+      "value": "",
+      "type": "Integer"
      },
      {
       "name": "backgroundColor",
-      "type": "Color",
-      "value": ""
+      "value": "",
+      "type": "Color"
      },
      {
       "name": "roundCorners",
-      "type": "RoundCorners",
-      "value": ""
+      "value": "",
+      "type": "RoundCorners"
      },
      {
       "name": "textAlign",
-      "type": "TextAlign",
-      "value": ""
+      "value": "",
+      "type": "TextAlign"
      },
      {
       "name": "cssClass",
-      "type": "String",
-      "value": ""
+      "value": "",
+      "type": "String"
      }
-    ],
-    "type": "LayoutRow",
-    "typeDesc": "Row"
+    ]
+   },
+   {
+    "id": "421c5250-5090-1485-4550-ae053737f382",
+    "type": "LayoutBootstrapColumn",
+    "typeDesc": "Column",
+    "parent": "63775fbb-5fb7-44f8-8ce5-3b5fa395185b",
+    "properties": [
+     {
+      "name": "name",
+      "value": "",
+      "type": "Id"
+     },
+     {
+      "name": "bootstrapExtraSmall",
+      "value": "12",
+      "type": "String"
+     },
+     {
+      "name": "bootstrapSmall",
+      "value": "",
+      "type": "String"
+     },
+     {
+      "name": "bootstrapMedium",
+      "value": "",
+      "type": "String"
+     },
+     {
+      "name": "bootstrapLarge",
+      "value": "",
+      "type": "String"
+     },
+     {
+      "name": "bootstrapCssClass",
+      "value": "",
+      "type": "String"
+     },
+     {
+      "name": "height",
+      "value": "",
+      "type": "Integer"
+     },
+     {
+      "name": "backgroundColor",
+      "value": "",
+      "type": "Color"
+     },
+     {
+      "name": "roundCorners",
+      "value": "",
+      "type": "RoundCorners"
+     },
+     {
+      "name": "textAlign",
+      "value": "",
+      "type": "TextAlign"
+     },
+     {
+      "name": "cssClass",
+      "value": "",
+      "type": "String"
+     }
+    ]
+   },
+   {
+    "id": "748dacf0-0f30-d634-4685-e61467fe6270",
+    "type": "LayoutHtml",
+    "typeDesc": "Html",
+    "parent": "421c5250-5090-1485-4550-ae053737f382",
+    "properties": [
+     {
+      "name": "name",
+      "value": "",
+      "type": "Id"
+     },
+     {
+      "name": "html",
+      "value": "<p>\n  The table below shows which files can be accessed by the current user: toggle visibility by\n  clicking on the \"Visible?\" column.\n</p>\n<p>Please review your\n  <code>pentaho-solutions/system/acldash/config.yaml</code> file for instructions\n  on how to enable visibility toggling.</p> ",
+      "type": "Html"
+     },
+     {
+      "name": "fontSize",
+      "value": "",
+      "type": "Integer"
+     },
+     {
+      "name": "color",
+      "value": "",
+      "type": "Color"
+     },
+     {
+      "name": "cssClass",
+      "value": "",
+      "type": "String"
+     }
+    ]
    },
    {
     "id": "9b5e4665-60dd-d123-d49a-7cb9072a0540",

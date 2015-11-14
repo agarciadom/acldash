@@ -475,7 +475,7 @@
      {
       "name": "tableStyle",
       "type": "TableStyle",
-      "value": "themeroller"
+      "value": "bootstrap"
      },
      {
       "name": "htmlObject",
@@ -500,7 +500,7 @@
      {
       "name": "postExecution",
       "type": "JavaScript",
-      "value": "function f() {\n    var myself = this;\n    \n    var divExtraFilters = $(\"<div></div>\")\n        .css(\"width\", \"30%\")\n        .css(\"line-height\", \"32px\")\n        .css(\"float\", \"left\")\n        .append(\n            $(\"<label></label>\")\n                .text(Dashboards.i18nSupport.prop(\"resource.onlyVisible\"))\n                .prepend(\n                    $(\"<input></input>\")\n                        .attr(\"type\", \"checkbox\")\n                        .change(function () {\n                            var dataTable = $(\"#\" + myself.htmlObject + \"Table\").dataTable();\n                            dataTable.fnFilter(this.checked ? \"true\" : \"\", 1);\n                        })\n                )\n                .css(\"margin-right\", \"10px\")\n        );\n\n    $(\"#\" + this.htmlObject)\n        .find(\".dataTables_length\")\n        .css(\"width\", \"20%\")\n        .after(divExtraFilters);\n} "
+      "value": "function f() {\n    var myself = this;\n    \n    var divExtraFilters = $(\"<div></div>\").attr(\"class\", \"onlyVisibleFilter\")\n        .append(\n            $(\"<label></label>\")\n                .text(Dashboards.i18nSupport.prop(\"resource.onlyVisible\"))\n                .prepend(\n                    $(\"<input></input>\")\n                        .attr(\"type\", \"checkbox\")\n                        .change(function () {\n                            var dataTable = $(\"#\" + myself.htmlObject + \"Table\").dataTable();\n                            dataTable.fnFilter(this.checked ? \"true\" : \"\", 1);\n                        })\n                )\n                .css(\"margin-right\", \"10px\")\n        );\n\n    $(\"#\" + this.htmlObject)\n        .find(\".dataTables_length\")\n        .css(\"width\", \"20%\")\n        .after(divExtraFilters);\n} "
      },
      {
       "name": "postFetch",
@@ -804,52 +804,6 @@
      }
     ],
     "type": "LayoutResourceCode",
-    "typeDesc": "Resource"
-   },
-   {
-    "id": "0aa5deeb-a702-13e9-58da-26275e8df910",
-    "parent": "UnIqEiD",
-    "properties": [
-     {
-      "name": "name",
-      "type": "Id",
-      "value": "projectCSS"
-     },
-     {
-      "name": "resourceFile",
-      "type": "ResourceFile",
-      "value": "/pentaho/api/repos/acldash/static/custom/css/acldash.css"
-     },
-     {
-      "name": "resourceType",
-      "type": "Label",
-      "value": "Css"
-     }
-    ],
-    "type": "LayoutResourceFile",
-    "typeDesc": "Resource"
-   },
-   {
-    "id": "51aba4e6-5beb-2f05-4d86-96e2ef3f49f0",
-    "parent": "UnIqEiD",
-    "properties": [
-     {
-      "name": "name",
-      "type": "Id",
-      "value": "projectJS"
-     },
-     {
-      "name": "resourceFile",
-      "type": "ResourceFile",
-      "value": "/pentaho/api/repos/acldash/static/custom/js/acldash.js"
-     },
-     {
-      "name": "resourceType",
-      "type": "Label",
-      "value": "Javascript"
-     }
-    ],
-    "type": "LayoutResourceFile",
     "typeDesc": "Resource"
    },
    {

@@ -52,7 +52,7 @@
      {
       "name": "colHeaders",
       "type": "ColHeadersArray",
-      "value": "[\"Role\"]"
+      "value": "[]"
      },
      {
       "name": "colSortable",
@@ -82,7 +82,7 @@
      {
       "name": "displayLength",
       "type": "Integer",
-      "value": ""
+      "value": "5"
      },
      {
       "name": "expandOnClick",
@@ -102,7 +102,7 @@
      {
       "name": "lengthChange",
       "type": "Boolean",
-      "value": "true"
+      "value": "false"
      },
      {
       "name": "paginate",
@@ -152,17 +152,17 @@
      {
       "name": "paginationType",
       "type": "PaginationType",
-      "value": "simple_numbers"
+      "value": "simple"
      },
      {
       "name": "tableStyle",
       "type": "TableStyle",
-      "value": ""
+      "value": "bootstrap"
      },
      {
       "name": "htmlObject",
       "type": "HtmlObject",
-      "value": "${h:Panel_1}"
+      "value": "${h:bodyRoles}"
      },
      {
       "name": "executeAtStart",
@@ -182,7 +182,7 @@
      {
       "name": "postExecution",
       "type": "JavaScript",
-      "value": ""
+      "value": "function f() {\n    $(\"#bodyRolesTable\").wrap('<div class=\"equalHeightTableWrapper\"></div>');\n} "
      },
      {
       "name": "postFetch",
@@ -255,7 +255,7 @@
      {
       "name": "colHeaders",
       "type": "ColHeadersArray",
-      "value": "[\"User\"]"
+      "value": "[]"
      },
      {
       "name": "colSortable",
@@ -285,7 +285,7 @@
      {
       "name": "displayLength",
       "type": "Integer",
-      "value": ""
+      "value": "5"
      },
      {
       "name": "expandOnClick",
@@ -305,7 +305,7 @@
      {
       "name": "lengthChange",
       "type": "Boolean",
-      "value": "true"
+      "value": "false"
      },
      {
       "name": "paginate",
@@ -355,17 +355,17 @@
      {
       "name": "paginationType",
       "type": "PaginationType",
-      "value": "simple_numbers"
+      "value": "simple"
      },
      {
       "name": "tableStyle",
       "type": "TableStyle",
-      "value": ""
+      "value": "bootstrap"
      },
      {
       "name": "htmlObject",
       "type": "HtmlObject",
-      "value": "${h:Panel_2}"
+      "value": "${h:bodyUsers}"
      },
      {
       "name": "executeAtStart",
@@ -385,7 +385,7 @@
      {
       "name": "postExecution",
       "type": "JavaScript",
-      "value": ""
+      "value": "function f() {\n    $(\"#bodyUsersTable\").wrap('<div class=\"equalHeightTableWrapper\"></div>');\n} "
      },
      {
       "name": "postFetch",
@@ -420,6 +420,122 @@
     ],
     "type": "ComponentsTable",
     "typeDesc": "table Component"
+   },
+   {
+    "id": "2106e334-e16d-e957-4b66-8a060752b735",
+    "parent": "OTHERCOMPONENTS",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "txtUsers"
+     },
+     {
+      "name": "listeners",
+      "type": "Listeners",
+      "value": "[]"
+     },
+     {
+      "name": "expression",
+      "type": "JavaScript",
+      "value": "function f() {\n    return Dashboards.i18nSupport.prop(\"header.users\");\n} "
+     },
+     {
+      "name": "priority",
+      "type": "Integer",
+      "value": 5
+     },
+     {
+      "name": "refreshPeriod",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "htmlObject",
+      "type": "HtmlObject",
+      "value": "${h:headerUsers}"
+     },
+     {
+      "name": "executeAtStart",
+      "type": "Boolean",
+      "value": "true"
+     },
+     {
+      "name": "preExecution",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "postExecution",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "tooltip",
+      "type": "Html",
+      "value": ""
+     }
+    ],
+    "type": "ComponentstextComponent",
+    "typeDesc": "Text Component"
+   },
+   {
+    "id": "5f7ffa1f-0d97-65b2-6239-e678f295396d",
+    "parent": "OTHERCOMPONENTS",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "txtRoles"
+     },
+     {
+      "name": "listeners",
+      "type": "Listeners",
+      "value": "[]"
+     },
+     {
+      "name": "expression",
+      "type": "JavaScript",
+      "value": "function f() {\n    return Dashboards.i18nSupport.prop(\"header.roles\");\n} "
+     },
+     {
+      "name": "priority",
+      "type": "Integer",
+      "value": 5
+     },
+     {
+      "name": "refreshPeriod",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "htmlObject",
+      "type": "HtmlObject",
+      "value": "${h:headerRoles}"
+     },
+     {
+      "name": "executeAtStart",
+      "type": "Boolean",
+      "value": "true"
+     },
+     {
+      "name": "preExecution",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "postExecution",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "tooltip",
+      "type": "Html",
+      "value": ""
+     }
+    ],
+    "type": "ComponentstextComponent",
+    "typeDesc": "Text Component"
    }
   ]
  },
@@ -497,59 +613,125 @@
  "layout": {
   "rows": [
    {
-    "id": "a41b100b-13e0-ceaa-4e83-c725c57fcd5b",
+    "id": "17058178-77e5-4604-4eb4-1c9bc24145cc",
+    "type": "LayoutResourceCode",
+    "typeDesc": "Resource",
     "parent": "UnIqEiD",
     "properties": [
      {
       "name": "name",
-      "type": "Id",
-      "value": "projectCSS"
+      "value": "extraCSS",
+      "type": "Id"
      },
      {
-      "name": "resourceFile",
-      "type": "ResourceFile",
-      "value": "/pentaho/api/repos/acldash/static/custom/css/acldash.css"
+      "name": "resourceCode",
+      "value": ".equalHeightTableWrapper {\n    min-height: 230px;\n}\n\n#bodyUsersTable thead, #bodyRolesTable thead {\n    display: none;\n}\n\ntd.column0 {\n    text-decoration: underline;\n    color: blue;\n    cursor: pointer;    \n} ",
+      "type": "Resource"
      },
      {
       "name": "resourceType",
-      "type": "Label",
-      "value": "Css"
+      "value": "Css",
+      "type": "Label"
      }
-    ],
-    "type": "LayoutResourceFile",
-    "typeDesc": "Resource"
+    ]
    },
    {
-    "id": "7a51f0e6-887a-42b2-7a08-b1c97bf01209",
+    "id": "21dd24ec-6eb9-33a6-b3ca-8b0131e4ee36",
     "parent": "UnIqEiD",
     "properties": [
      {
       "name": "name",
       "type": "Id",
-      "value": "projectJS"
+      "value": ""
      },
      {
-      "name": "resourceFile",
-      "type": "ResourceFile",
-      "value": "/pentaho/api/repos/acldash/static/custom/js/acldash.js"
+      "name": "height",
+      "type": "Integer",
+      "value": ""
      },
      {
-      "name": "resourceType",
-      "type": "Label",
-      "value": "Javascript"
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": "col-md-6 col-sm-6 col-xs-12"
+     },
+     {
+      "name": "bootstrapPanelStyle",
+      "type": "bootstrapPanelStyleCustom",
+      "value": "panel-default"
      }
     ],
-    "type": "LayoutResourceFile",
-    "typeDesc": "Resource"
+    "type": "BootstrapPanel",
+    "typeDesc": "Bootstrap Panel"
    },
    {
-    "id": "e12f9bf3-27f1-beb1-0a68-a5b0facd091b",
+    "id": "d4ba7f5a-8f32-5685-b28b-d18723201165",
+    "parent": "21dd24ec-6eb9-33a6-b3ca-8b0131e4ee36",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "headerUsers"
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "BootstrapPanelHeader",
+    "typeDesc": "Panel Header"
+   },
+   {
+    "id": "3869368f-9af7-2f24-441a-6c2462348818",
+    "parent": "21dd24ec-6eb9-33a6-b3ca-8b0131e4ee36",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "bodyUsers"
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "BootstrapPanelBody",
+    "typeDesc": "Panel Body"
+   },
+   {
+    "id": "bd47049f-aa65-d6ab-2e5a-c1bb6d1a3278",
     "parent": "UnIqEiD",
     "properties": [
      {
       "name": "name",
       "type": "Id",
-      "value": "Header"
+      "value": ""
      },
      {
       "name": "height",
@@ -557,9 +739,32 @@
       "value": ""
      },
      {
-      "name": "backgroundColor",
-      "type": "Color",
+      "name": "roundCorners",
+      "type": "RoundCorners",
       "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": "col-md-6 col-sm-6 col-xs-12"
+     },
+     {
+      "name": "bootstrapPanelStyle",
+      "type": "bootstrapPanelStyleCustom",
+      "value": "panel-default"
+     }
+    ],
+    "type": "BootstrapPanel",
+    "typeDesc": "Bootstrap Panel"
+   },
+   {
+    "id": "99c390eb-b147-be60-3e05-3886fea45204",
+    "parent": "bd47049f-aa65-d6ab-2e5a-c1bb6d1a3278",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "headerRoles"
      },
      {
       "name": "roundCorners",
@@ -577,133 +782,17 @@
       "value": ""
      }
     ],
-    "type": "LayoutRow",
-    "typeDesc": "Row"
+    "type": "BootstrapPanelHeader",
+    "typeDesc": "Panel Header"
    },
    {
-    "id": "5dc54aa4-6a22-269a-d641-ac5fd3a61298",
-    "parent": "e12f9bf3-27f1-beb1-0a68-a5b0facd091b",
+    "id": "8c14b63e-692d-b179-74ed-3ca966c9310e",
+    "parent": "bd47049f-aa65-d6ab-2e5a-c1bb6d1a3278",
     "properties": [
      {
       "name": "name",
       "type": "Id",
-      "value": ""
-     },
-     {
-      "name": "columnSpan",
-      "type": "Integer",
-      "value": "24"
-     },
-     {
-      "name": "columnPrepend",
-      "type": "Integer",
-      "value": ""
-     },
-     {
-      "name": "columnAppend",
-      "type": "Integer",
-      "value": ""
-     },
-     {
-      "name": "columnPrependTop",
-      "type": "Boolean",
-      "value": false
-     },
-     {
-      "name": "columnAppendBottom",
-      "type": "Boolean",
-      "value": false
-     },
-     {
-      "name": "columnBorder",
-      "type": "Boolean",
-      "value": false
-     },
-     {
-      "name": "columnBigBorder",
-      "type": "Boolean",
-      "value": false
-     },
-     {
-      "name": "height",
-      "type": "Integer",
-      "value": "60"
-     },
-     {
-      "name": "backgroundColor",
-      "type": "Color",
-      "value": "#005ac7"
-     },
-     {
-      "name": "roundCorners",
-      "type": "RoundCorners",
-      "value": "cdfdd-round"
-     },
-     {
-      "name": "textAlign",
-      "type": "TextAlign",
-      "value": "center"
-     },
-     {
-      "name": "cssClass",
-      "type": "String",
-      "value": ""
-     }
-    ],
-    "type": "LayoutColumn",
-    "typeDesc": "Column"
-   },
-   {
-    "id": "53e4ccdd-bd66-1ee1-8b5a-5a8771703095",
-    "parent": "5dc54aa4-6a22-269a-d641-ac5fd3a61298",
-    "properties": [
-     {
-      "name": "name",
-      "type": "Id",
-      "value": "title"
-     },
-     {
-      "name": "html",
-      "type": "Html",
-      "value": "<h2 style=\"color:#FFFFFF;\">ACL Dashboards</h2>\n "
-     },
-     {
-      "name": "fontSize",
-      "type": "Integer",
-      "value": ""
-     },
-     {
-      "name": "color",
-      "type": "Color",
-      "value": ""
-     },
-     {
-      "name": "cssClass",
-      "type": "String",
-      "value": ""
-     }
-    ],
-    "type": "LayoutHtml",
-    "typeDesc": "Html"
-   },
-   {
-    "id": "cda9bf5f-0f51-13db-68ac-616cef3e73be",
-    "parent": "UnIqEiD",
-    "properties": [
-     {
-      "name": "name",
-      "type": "Id",
-      "value": "Spacer"
-     },
-     {
-      "name": "height",
-      "type": "Integer",
-      "value": "5"
-     },
-     {
-      "name": "backgroundColor",
-      "type": "Color",
-      "value": ""
+      "value": "bodyRoles"
      },
      {
       "name": "roundCorners",
@@ -721,341 +810,8 @@
       "value": ""
      }
     ],
-    "type": "LayoutRow",
-    "typeDesc": "Row"
-   },
-   {
-    "id": "9b5e4665-60dd-d123-d49a-7cb9072a0540",
-    "parent": "UnIqEiD",
-    "properties": [
-     {
-      "name": "name",
-      "type": "Id",
-      "value": "Body"
-     },
-     {
-      "name": "height",
-      "type": "Integer",
-      "value": ""
-     },
-     {
-      "name": "backgroundColor",
-      "type": "Color",
-      "value": ""
-     },
-     {
-      "name": "roundCorners",
-      "type": "RoundCorners",
-      "value": ""
-     },
-     {
-      "name": "textAlign",
-      "type": "TextAlign",
-      "value": ""
-     },
-     {
-      "name": "cssClass",
-      "type": "String",
-      "value": ""
-     }
-    ],
-    "type": "LayoutRow",
-    "typeDesc": "Row"
-   },
-   {
-    "id": "a75b059a-0f5b-deda-6d3f-aeba72af2fe5",
-    "parent": "9b5e4665-60dd-d123-d49a-7cb9072a0540",
-    "properties": [
-     {
-      "name": "name",
-      "type": "Id",
-      "value": "Panel_1"
-     },
-     {
-      "name": "columnSpan",
-      "type": "Integer",
-      "value": "10"
-     },
-     {
-      "name": "columnPrepend",
-      "type": "Integer",
-      "value": "1"
-     },
-     {
-      "name": "columnAppend",
-      "type": "Integer",
-      "value": "1"
-     },
-     {
-      "name": "columnPrependTop",
-      "type": "Boolean",
-      "value": false
-     },
-     {
-      "name": "columnAppendBottom",
-      "type": "Boolean",
-      "value": false
-     },
-     {
-      "name": "columnBorder",
-      "type": "Boolean",
-      "value": false
-     },
-     {
-      "name": "columnBigBorder",
-      "type": "Boolean",
-      "value": false
-     },
-     {
-      "name": "height",
-      "type": "Integer",
-      "value": "400"
-     },
-     {
-      "name": "backgroundColor",
-      "type": "Color",
-      "value": "#eaedee"
-     },
-     {
-      "name": "roundCorners",
-      "type": "RoundCorners",
-      "value": "cdfdd-round"
-     },
-     {
-      "name": "textAlign",
-      "type": "TextAlign",
-      "value": ""
-     },
-     {
-      "name": "cssClass",
-      "type": "String",
-      "value": ""
-     }
-    ],
-    "type": "LayoutColumn",
-    "typeDesc": "Column"
-   },
-   {
-    "id": "33c5530d-4064-ad09-75d3-eb9be0cba2fc",
-    "parent": "9b5e4665-60dd-d123-d49a-7cb9072a0540",
-    "properties": [
-     {
-      "name": "name",
-      "type": "Id",
-      "value": "Panel_2"
-     },
-     {
-      "name": "columnSpan",
-      "type": "Integer",
-      "value": "10"
-     },
-     {
-      "name": "columnPrepend",
-      "type": "Integer",
-      "value": "1"
-     },
-     {
-      "name": "columnAppend",
-      "type": "Integer",
-      "value": "1"
-     },
-     {
-      "name": "columnPrependTop",
-      "type": "Boolean",
-      "value": false
-     },
-     {
-      "name": "columnAppendBottom",
-      "type": "Boolean",
-      "value": false
-     },
-     {
-      "name": "columnBorder",
-      "type": "Boolean",
-      "value": false
-     },
-     {
-      "name": "columnBigBorder",
-      "type": "Boolean",
-      "value": false
-     },
-     {
-      "name": "height",
-      "type": "Integer",
-      "value": "400"
-     },
-     {
-      "name": "backgroundColor",
-      "type": "Color",
-      "value": "#eaedee"
-     },
-     {
-      "name": "roundCorners",
-      "type": "RoundCorners",
-      "value": "cdfdd-round"
-     },
-     {
-      "name": "textAlign",
-      "type": "TextAlign",
-      "value": ""
-     },
-     {
-      "name": "cssClass",
-      "type": "String",
-      "value": ""
-     }
-    ],
-    "type": "LayoutColumn",
-    "typeDesc": "Column"
-   },
-   {
-    "id": "6e933249-6d80-9b57-95f9-8a47a24ae398",
-    "parent": "UnIqEiD",
-    "properties": [
-     {
-      "name": "name",
-      "type": "Id",
-      "value": "Small_Space"
-     },
-     {
-      "name": "height",
-      "type": "Integer",
-      "value": "5"
-     },
-     {
-      "name": "backgroundColor",
-      "type": "Color",
-      "value": ""
-     },
-     {
-      "name": "roundCorners",
-      "type": "RoundCorners",
-      "value": ""
-     },
-     {
-      "name": "textAlign",
-      "type": "TextAlign",
-      "value": ""
-     },
-     {
-      "name": "cssClass",
-      "type": "String",
-      "value": ""
-     }
-    ],
-    "type": "LayoutRow",
-    "typeDesc": "Row"
-   },
-   {
-    "id": "64b07960-f21e-b93e-4911-8c2c025d0d3b",
-    "parent": "UnIqEiD",
-    "properties": [
-     {
-      "name": "name",
-      "type": "Id",
-      "value": "Footer"
-     },
-     {
-      "name": "height",
-      "type": "Integer",
-      "value": "50"
-     },
-     {
-      "name": "backgroundColor",
-      "type": "Color",
-      "value": "#eaedee"
-     },
-     {
-      "name": "roundCorners",
-      "type": "RoundCorners",
-      "value": "cdfdd-round"
-     },
-     {
-      "name": "textAlign",
-      "type": "TextAlign",
-      "value": "right"
-     },
-     {
-      "name": "cssClass",
-      "type": "String",
-      "value": ""
-     }
-    ],
-    "type": "LayoutRow",
-    "typeDesc": "Row"
-   },
-   {
-    "id": "e5c22f13-2f56-9638-5a05-b675a84fc695",
-    "parent": "64b07960-f21e-b93e-4911-8c2c025d0d3b",
-    "properties": [
-     {
-      "name": "name",
-      "type": "Id",
-      "value": "Footer_Image"
-     },
-     {
-      "name": "columnSpan",
-      "type": "Integer",
-      "value": "24"
-     },
-     {
-      "name": "columnPrepend",
-      "type": "Integer",
-      "value": ""
-     },
-     {
-      "name": "columnAppend",
-      "type": "Integer",
-      "value": "0"
-     },
-     {
-      "name": "columnPrependTop",
-      "type": "Boolean",
-      "value": false
-     },
-     {
-      "name": "columnAppendBottom",
-      "type": "Boolean",
-      "value": false
-     },
-     {
-      "name": "columnBorder",
-      "type": "Boolean",
-      "value": false
-     },
-     {
-      "name": "columnBigBorder",
-      "type": "Boolean",
-      "value": false
-     },
-     {
-      "name": "height",
-      "type": "Integer",
-      "value": ""
-     },
-     {
-      "name": "backgroundColor",
-      "type": "Color",
-      "value": ""
-     },
-     {
-      "name": "roundCorners",
-      "type": "RoundCorners",
-      "value": ""
-     },
-     {
-      "name": "textAlign",
-      "type": "TextAlign",
-      "value": "left"
-     },
-     {
-      "name": "cssClass",
-      "type": "String",
-      "value": ""
-     }
-    ],
-    "type": "LayoutColumn",
-    "typeDesc": "Column"
+    "type": "BootstrapPanelBody",
+    "typeDesc": "Panel Body"
    }
   ],
   "title": "2 Columns Template"

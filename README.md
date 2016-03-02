@@ -12,7 +12,7 @@ but permission toggling requires additional setup because of a
 [limitation](https://github.com/pentaho/pdi-platform-utils-plugin/issues/1)
 in the "Call endpoint" step, which requires falling back to the old
 [REST Client](http://wiki.pentaho.com/display/EAI/Rest+Client)
-step. Please check the included `config.yaml` for details.
+step. Please check the included [config.yaml](https://github.com/bluezio/acldash/blob/master/config.yaml#L6) for details.
 
 Basic usage
 --

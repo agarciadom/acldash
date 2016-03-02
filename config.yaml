@@ -3,7 +3,7 @@
 # ~/.kettle/kettle.properties file, which should be only readable by
 # the user running Pentaho.
 #
-# For a stock Pentaho CE install, use this lines and uncomment them:
+# For a stock Pentaho CE install, use these lines and uncomment them:
 #
 # ARTIFACTCATALOG_RESTAPI_USER=Admin
 # ARTIFACTCATALOG_RESTAPI_PWD=password
